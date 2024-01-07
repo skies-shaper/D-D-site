@@ -75,9 +75,6 @@
             margin-right: auto;
             width: 100%;
         }
-        .wide {
-            width: 105px;
-        }
         #menu {
             width: 100%;
             height: 55px;
@@ -111,6 +108,8 @@
         }
         .content h3 {
             margin: 5px;
+            margin-bottom: 0px;
+            background-color: bisque;
         }
         .content ul {
             margin: 0;
@@ -119,6 +118,7 @@
         }
         .content p {
             margin: 0;
+
         }
         .content li {
             list-style-type: disc;
@@ -133,11 +133,37 @@
                 background-color: red;
             }
         }
+        .wide {
+            width: 105px;
+            font-family: 'Lugrasimo';
+            font-size: 20px;
 
+        }
+        #mapoverlay {
+            position: absolute;
+            z-index: 5;
+            width: 95vh;
+            padding-left: calc(((100% - 403px - 95vh) / 2) + 30px);
+            display: block;
+         
+            
+            top: 0px;
+            left: 0;
+            float: left;
+        }
+        path:hover {
+            fill: coral;
+        }
     </style> 
     <script>
-        function setview(id)
+
+        var lastselectedID =0 ;
+        function setview(id,index)
         {
+            if(lastselectedID>0)
+            {
+                document.getElementById("H"+lastselectedID).style.background = "bisque"
+            }
             let contentboxes =  document.getElementsByClassName("content")
             for(let i = 0; i<contentboxes.length; i++)
             {
@@ -146,11 +172,85 @@
             }
             contentboxes[id].style.height = "calc(100vh - 185px)";
             contentboxes[id].style.margin = "5px";
+            if(index !=undefined && id==4)
+            {
+                document.getElementById("H"+index).scrollIntoView({behavior: 'smooth'});
+                document.getElementById("H"+index).style.background = "darkgrey"
+                lastselectedID = index
+                
+            }
         }
     </script>
 </head>
 <body>
+<div class="imgholder"><img src="Hrinesoul.svg" style="max-height: 95vh;"><svg id="mapoverlay" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95vh" height="95vh" viewBox="0,0,515,515"  preserveAspectRatio="1:1" >
 
+    <g transform="translate(-1.71575,73.25372)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill="#ff0000" fill-rule="nonzero" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal">
+    <path onclick="setview(4,1)" d="M272.86514,153.03513c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.80399 -9.13425,-13.8487z"/>
+    <path onclick="setview(4,2)" d="M252.66575,225.21606c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.0447 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
+    <path onclick="setview(4,3)" d="M424.36578,264.98514c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.0447 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
+    <path onclick="setview(4,4)" d="M2.71575,357.7918c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
+    <path onclick="setview(4,5)" d="M81.44562,81.02265c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
+    <path onclick="setview(4,6)" d="M391.0649,52.9921c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
+    <path onclick="setview(4,7)" d="M269.06575,9.07967c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
+    <path onclick="setview(4,8)" d="M244.76833,-63.11947c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
+    <path onclick="setview(4,9)" d="M273.76199,75.05028c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
+    <path onclick="setview(4,10)" d="M178.35217,70.63488c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.0447 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
+    </g></g></svg></div>
+<div id="text-content">
+<div id="text-heading">
+    <h1>Hinresoul</h1>
+    <p>floating city of the wise</p>
+</div>
+<div id="menu">
+    <button class="menubutton" onclick="setview(0)" id="about">
+        <img src="fire.gif" class="hiddenimg">
+        <img src="pixil-frame-0(3).png" class="icon">
+    </button>
+    <button class="menubutton" id="people" onclick="setview(1)">
+        <img src="fire.gif" class="hiddenimg">
+        <img src="pixil-frame-0 (5).png" class="icon">
+    </button>
+    <button class="menubutton" id="location" onclick="setview(2)">
+        <img src="fire.gif" class="hiddenimg">
+        <img src="pixil-frame-0 (4).png" class="icon">
+    </button>
+    <button class="menubutton" id="questhooks" onclick="setview(3)">
+        <img src="fire.gif" class="hiddenimg">
+        <img src="pixil-frame-0 (6).png" class="icon">
+    </button>
+    <button class="menubutton" id="places" onclick="setview(4)" >
+        <img src="fire.gif" class="hiddenimg">
+        <img src="pixil-frame-0 (7).png" class="icon">
+    </button>
+    <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
+</div>
+<div class="content" id="content-about">
+    <h2>Introduction</h2>
+</div>
+<div class="content" id="content-people">
+    <h2>People and Organizations</h2>
+    <h3 class="empty">
+        This page is empty now, but soon it will be awesome. 
+    </h3>
+</div>
+<div class="content" id="content-location">
+    <h2>Location</h2>
+</div>    
+<div class="content" id="content-hooks">
+    <h2>Adventure hooks</h2>
+</div>
+<div class="content" id="content-places">
+    <h2>Locations within [Your place's name]</h2>
+</div>
+<div class="content" id="content-about">
+    <h2>About</h2>
+    <p>The Hinresoul campaign setting was written by Alexander Shapinsky.</p>
+</div>
+
+
+
+</div>
 <div class="footer">
     <p style="font-size: 20px; margin: 0%;" xmlns:cc="http://creativecommons.org/ns#">This work by <span property="cc:attributionName">Alexander Shapinsky</span>
         is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
