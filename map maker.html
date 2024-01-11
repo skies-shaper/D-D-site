@@ -174,7 +174,7 @@
                             userX = event.offsetX-event.offsetX%6.5
                             userY = event.offsetY-event.offsetY%6.5
                         }
-                        scrndata.push({type: "dungeon feature",coord:[userX, userY], ftype: "door", rotation: rotation}, offsetX = 0, offsetY = 0)
+                        scrndata.push({type: "dungeon feature",coord:[userX, userY], ftype: "door", rotation: rotation, offsetX: 0, offsetY: 0})
                         updateScreen()  
                     }
                 })
@@ -312,17 +312,17 @@
                     if(scrndata[i].type == "draw")
                     {
                         
-                        pen.moveTo(scrndata[i].data[0][0],scrndata[i].data[0][1])
+                        pen.moveTo(scrndata[i].data[0][0]+scrndata[i].offsetX,scrndata[i].data[0][1]+scrndata[i].offsetY)
                         for(let j = 0; j<scrndata[i].data.length; j++)
                         {
                             if(scrndata[i].data.length==1)
                             {
-                                pen.ellipse(scrndata[i].data[0][0],scrndata[i].data[0][1],1,1,1,0,6.3)
+                                pen.ellipse(scrndata[i].data[0][0]+scrndata[i].offsetX,scrndata[i].data[0][1]+scrndata[i].offsetY,1,1,1,0,6.3)
                                 pen.fill()
                             }
                             else
                             {
-                                pen.lineTo(scrndata[i].data[j][0],scrndata[i].data[j][1])
+                                pen.lineTo(scrndata[i].data[j][0]+scrndata[i].offsetX,scrndata[i].data[j][1]+scrndata[i].offsetY)
                             }
                         }
                         pen.stroke();
@@ -331,8 +331,11 @@
                     if(scrndata[i].type == "waypoint")
                     {
                         //log(scrndata[i].position[0]+", "+scrndata[i].position[1])
-                        pen.fillStyle = "red"
-                        pen.strokeStyle = "red"
+                        if(!(EDIT_ITEM==i && Draw_Type == "edit"))
+                        {
+                            pen.fillStyle = "red"
+                            pen.strokeStyle = "red"
+                        }
                         pen.ellipse(scrndata[i].position[0],scrndata[i].position[1],3,3,1,0,6.3)
                         pen.fill()
                         pen.font = "8px serif";
@@ -342,8 +345,8 @@
                     if(scrndata[i].type == "line")
                     {
                         //og(JSON.stringify(scrndata))
-                        pen.moveTo(scrndata[i].coords[0][0],scrndata[i].coords[0][1])
-                        pen.lineTo(scrndata[i].coords[1][0],scrndata[i].coords[1][1])
+                        pen.moveTo(scrndata[i].coords[0][0]+scrndata[i].offsetX,scrndata[i].coords[0][1]+scrndata[i].offsetY)
+                        pen.lineTo(scrndata[i].coords[1][0]+scrndata[i].offsetX,scrndata[i].coords[1][1]+scrndata[i].offsetY)
                         pen.stroke()
                     }
                     
