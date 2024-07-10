@@ -12,318 +12,47 @@
             margin: 0;
             overflow: hidden;
         }
-        .footer {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            float: left;
-            position: absolute;
-            bottom: 0;
-            z-index: 100;
-            background-color: lightgray;
-            border: 0;
-            padding: 0;
-            margin: none;
-            border-top: 1px solid black;
-            border-right: 1px solid black;
-            border-radius: 0px 5px 0 0;
-            max-width: calc(100vw - 403px);
+        #main {
+            text-align: center;
         }
-        #text-content {
-            min-width: 5px;
-            width: 400px;
-            height: 100vh;
-            float: right;
-            top: 0;
-            border-left: 3px solid black;
-        }
-        #text-heading h1 {
-            margin: 0;
+        #main h1{
+            width: 95%;
+            margin: 2.5%;
             font-size: 70px;
-        }
-        #text-heading p {
-            margin: 0;
-            text-align: center;
-        }
-        .imgholder {
-            text-align: center;
-            width: 95vh;
-            padding-left: calc((100% - 403px - 95vh) / 2);
-            float: left;
-        }
-        #text-heading {
-            border-bottom: 3px solid black;
-            height: 120px;
-        }
-        .menubutton {
-            position: relative;
-            width: 50px;
-            height: 50px;
-            float: left;
-            margin-left: 5px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            border-radius: 5px;
-            background: none;
-            border: 3px solid black;
-            padding: 0;
-        }
-        .menubutton .icon {
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-        #menu {
-            width: 100%;
-            height: 55px;
-        }
-        .menubutton:hover {
-         
-            background-color: burlywood;
-            /*animation will happen*/
-        }
-        .menubutton:hover .hiddenimg {
-            visibility: visible;
-        }
-        .hiddenimg {
-            position: relative;
-            z-index: 5;
-            visibility: hidden;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            top: 0px;
-            left: 0;
-            float: left;
-        }
-        .content {
-            width: 100%;
-            margin: 5px;
-            height: calc(100vh - 185px);
-            overflow: auto;
-            text-align: left;
-        }
-        .content h3 {
-            margin: 5px;
             margin-bottom: 0px;
-            background-color: bisque;
         }
-        .content ul {
-            margin: 0;
-            padding: 10px;
-            padding-top: 0px;
-        }
-        .content p {
-            margin: 0;
-
-        }
-        .content li {
-            list-style-type: disc;
-            padding: 5px;
-        }
-        .content h2 {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-        @media screen and (width < calc(95vh + 405px)) {
-            body {
-                background-color: red;
-            }
-        }
-        .wide {
-            width: 105px;
-            font-family: 'Lugrasimo';
+        #main button {
             font-size: 20px;
-
-        }
-        #mapoverlay {
-            position: absolute;
-            z-index: 5;
-            width: 95vh;
-            padding-left: calc(((100% - 403px - 95vh) / 2) + 30px);
-            display: block;
-         
+            height: 60px;
+            border-radius: 5px;
+            background-color: deepskyblue;
+            border: none;
+            padding: 5px;
             
-            top: 0px;
-            left: 0;
-            float: left;
         }
-        path:hover {
-            fill: coral;
+        #main button:hover {
+            background-color: dodgerblue;
+            
+        }
+        #main input {
+            height: 50px;
+            width: 200px;
+            padding: 5px;
+            border: none;
+            font-size: 20px;
+            background-color: burlywood;
+            border-radius: 5px;
+
         }
     </style> 
-    <script>
-
-        var lastselectedID =0 ;
-        function setview(id,index)
-        {
-            if(lastselectedID>0)
-            {
-                document.getElementById("H"+lastselectedID).style.background = "bisque"
-            }
-            let contentboxes =  document.getElementsByClassName("content")
-            for(let i = 0; i<contentboxes.length; i++)
-            {
-                contentboxes[i].style.height = 0
-                contentboxes[i].style.margin = 0
-            }
-            contentboxes[id].style.height = "calc(100vh - 185px)";
-            contentboxes[id].style.margin = "5px";
-            if(index !=undefined && id==4)
-            {
-                document.getElementById("H"+index).scrollIntoView({behavior: 'smooth'});
-                document.getElementById("H"+index).style.background = "darkgrey"
-                lastselectedID = index
-                
-            }
-        }
-    </script>
 </head>
 <body>
-<div class="imgholder"><img src="Hrinesoul.svg" style="max-height: 95vh;"><svg id="mapoverlay" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95vh" height="95vh" viewBox="0,0,515,515"  preserveAspectRatio="1:1" >
-
-    <g transform="translate(-1.71575,73.25372)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill="#ff0000" fill-rule="nonzero" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal">
-    <path onclick="setview(4,1)" d="M272.86514,153.03513c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.80399 -9.13425,-13.8487z"/>
-    <path onclick="setview(4,2)" d="M252.66575,225.21606c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.0447 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
-    <path onclick="setview(4,3)" d="M424.36578,264.98514c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.0447 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
-    <path onclick="setview(4,4)" d="M2.71575,357.7918c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
-    <path onclick="setview(4,5)" d="M81.44562,81.02265c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
-    <path onclick="setview(4,6)" d="M391.0649,52.9921c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08954 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
-    <path onclick="setview(4,7)" d="M269.06575,9.07967c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
-    <path onclick="setview(4,8)" d="M244.76833,-63.11947c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
-    <path onclick="setview(4,9)" d="M273.76199,75.05028c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z"/>
-    <path onclick="setview(4,10)" d="M178.35217,70.63488c0,-5.04471 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.0447 -9.13425,13.8487 -9.13425,13.8487c0,0 -9.13425,-8.804 -9.13425,-13.8487z"/>
-    </g></g></svg></div>
-<div id="text-content">
-<div id="text-heading">
-    <h1>Hinresoul</h1>
-    <p>floating city of the wise</p>
-</div>
-<div id="menu">
-    <button class="menubutton" onclick="setview(0)" id="about">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0(3).png" class="icon">
-    </button>
-    <button class="menubutton" id="people" onclick="setview(1)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (5).png" class="icon">
-    </button>
-    <button class="menubutton" id="location" onclick="setview(2)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (4).png" class="icon">
-    </button>
-    <button class="menubutton" id="questhooks" onclick="setview(3)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (6).png" class="icon">
-    </button>
-    <button class="menubutton" id="places" onclick="setview(4)" >
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (7).png" class="icon">
-    </button>
-    <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
-</div>
-<div class="content" id="content-about">
-    <h2>Introduction</h2>
-
-    <p>Hinresoul stands above the great mountains of Ernos' Folly, its islands held in place by a beam of energy thrust out of the crystal-encased soul of a spirit of death which was defeated in ancient times by a great hero. Its population is <strong>small</strong>, measuring just over 600 people. Of those 600 or so full-time residents, the vast majority are members of one of the three orders who hold court on these islands, founded in the wake of the defeat of the Great Spirit of Death which gave this town its power. They are:<br><h3>
-    -The Smiths of the Three Suns<br>
-    -The Keepers of the knowledge of Ernos' Bane<br>
-    -The Order of the Gilded Sprout.</h3>
-    <p>
-        You will learn more about them as you explore this city. For now, all you need to know is that each is dedicated to creating powerful magical artifacts, and the export of those artifacts make up the majority of the city's economy.
-    </p>
-</div>
-<div class="content" id="content-people">
-    <h2>People and Organizations</h2>
-    <h3 class="empty">
-        This page is empty now, but soon it will be awesome. 
-    </h3>
-</div>
-<div class="content" id="content-location">
-    <h2>Location</h2>
-    <p>Hinresoul floats above the Mountain range of Ernos' folly, a forbidding series of high peaks which appear to have been thrust from the earth by some ancient and terrible explosion. Its islands are encased from the bottom with a whitish stone, curiously unlike any found for miles and miles from its location</p>
-    <p>It is held in place with a vast magical beam, thrust out of the crystal-encased soul of a long-defeated spirit in the mountains below it.</p>
-    <p>Directly to its north and east is Lake Ovnor, and ships from its small haven will primarily traverse the <a>sky-trails</a> down to one of that great lake's principal ports. Occasionally they will come from as far as the elven kingdoms in the far east, Mensch-Kaoul, or one of the warring kingdoms in the west.</p>
-    <p>Directly to the south of Hinresoul is a dense forest, which gives way to arid badlands within a few hundred miles. The <a>Great Maw</a> opens some three hundred miles to Hinresoul's south. To the west is the great river and the fertile, rocky lands which surround it.</p>
-</div>    
-<div class="content" id="content-hooks">
-    <h2>Adventure hooks</h2>
-    <p><em>You gaze above the prow of your sky-ship. Glimmering in the light of the setting sun is the fabled city of Hinresoul. The captain orders a slow, and you feel a sudden grounding as the keel hits water once more, but this time thousands of feet above the nearest land.</em></p>
-    <p>Hinresoul is full of opportunity. Dare you take it?</p>
-    <h3>The Thieves of the Withering Wood</h3>
-    <p>Hinresoul exports many magical artifacts. Weapons, potions, scrolls of powerful spells. Normally this is a peaceful, uninterrupted trade. After all, most of the major guilds of spellcasters rely on at least one thing or another produced in its breezy heights. As such, shipments are often protected by powerful runes and guarded by powerful warriors. Only a few days ago, however, right after the members of your party had arrived in Hinresoul, a shipment went missing. The protection-runes were tracked, and found to be projecting their location from a forest but some 50 miles away.</p>
-    <p>Your party members are among those who volunteered to retrieve the shipment.</p>
-    <ul>
-        <li>-Reward: At least some magical items for each party member, appropriate for level.</li>
-        <li>-Recommended Starting Level: 2-4</li>
-        <li>-Projected end level: 4-6</li>
-    </ul>
-    <h3>The Assailants of the Encased Soul</h3>
-    <p>The vast majority of Hinresoul's magical power comes deep from within the earth, in the mountains below it. Long ago, a warrior named Enros, after whom these mountains are named, and his companions fought an ancient spirit of darkness. Though he did not survive, and the mountains themselves were reared up in the wake of the battle, the dark spirit was vanquished and its soul encased in a tomb of adamantine and diamond. It is stored in a heavily-protected cave-encrusted fortress, and it is said an ancient dragon even guards it within her clutch of eggs. However, a crafty undead warrior by the name of S'coom has carved out a fortification within this cave system, and is preparing to strike and shatter the encasement. In doing so, he could combine his own soul with that of the Dark One, or else cause Hinresoul itself to come crashing to the ground. </p>
-    <p>Your party members, having gained fame in both retrieving the treasure from the Withered Wood and other escapades, are commanded by Hinresoul's council of high elders to defeat S'coom.</p>
-    <ul>
-        <li>-Reward: Exceedingly powerful artifacts from the treasuries of Hinresoul</li>
-        <li>-Recommended Starting Level: 8-10</li>
-        <li>-Projected end level: 11-14</li>
-    </ul>
-    <h3>The Summoning of a New Age</h3>
-    <p>The encased soul, after being saved by a brave group of adventurers nearly a decade ago, is now fading. You must re-summon a new spirit of evil and defeat it in order to preserve the balance of Magic on this plane</p>
-    <ul>
-        <li>-Reward: Soul-bound blades and spell components (link eventually)</li>
-        <li>-Recommended Starting Level: 15</li>
-        <li>-Projected end level: 18</li>
-    </ul>
-    
-</div>
-<div class="content" id="content-places">
-    <h2>Locations within the city of Hinresoul</h2>
-    <p> <h3 id="H1">-H1: The Great Library</h3>
-        This vast building towers up two high floors, and is filled with bookshelves in which are hidden the secrets of the realms. Many enchantments of old are stored within its deep catacombs, and the Keepers, an ancient order of wizards who have hidden the lore of these islands somewhere safe.<br>
-        <h3 id="H2">-H2: Plaza</h3>
-        Standing tall above the wide courtyard of the library is the great statue of Ernos. His staff is raised tall above his head, and through it thrusts the beam of energy which keeps these islands aloft.<br>
-        <h3 id="H3">-H3: The Central Haven of Hinresoul</h3>
-        Great many-masted flying wind-ships will majestically float in and out of Hinresoul through this port, ready to transport its magical wares across the worlds.<br>
-        <h3 id="H4">-H4: The tower of the Creator</h3>
-        Inside of this tall tower lie many treasures of the architect of these islands, skyehspaer (ski-es-pair) the wise. It is surrounded by a garden of fragrant flowers and a shimmering pond in which it is said the future may be scried.<br>
-        <h3 id="H5">-H5: The One-Forge of the Smiths of the three suns</h3>
-        There are but two things tethering Hinresoul to the Prime Plane. The first being, of course, the Great Beam. But the second is a constant, infinite flow of burning lava, drawn into the great forge which lies above it. This is a low, stone building with a roof of simple wood. But the bright sound of hammers rings always from the clerics working within, singing their songs of power and imbibing their weapons and tools with a magical glint.<br>
-        <h3 id="H6">-H6: The pool of the eternal wing</h3>
-        Upon this lone island was discovered, long ago, the secret of flight.<br>
-        <h3 id="H7">-H7: The Ethereal Gardens</h3>
-        Filled with endless arrays of magical herbs and mystical fruits with many varied powers that are studied by the Order of the Guilded Sprout. Faerie Dragons and other, stranger beings may be found flitting around them.<br>
-        <h3 id="H8">-H8: The Temple of the Order of the Gilded Sprout</h3>
-        An open-air building of dark gray stone, the Temple is vast and filled with bubbling cauldrons, burning incense, and drying plants. Monks wander its columned great hall, brewing potions and dyeing elixirs vibrant hues.<br>
-        <h3 id="H9">-H9: The Keepers' overlook</h3>
-        To a layman, this will appear to be but a broad balcony overlooking the Ethereal Gardens. However, an adept Keeper can cast [SPELL] to see anywhere on this plane from it.<br>
-        <h3 id="H10">-H10: The bridges of Serenity</h3>
-        Traveling down through a scattering of small floating islets, carpeted in moss, is a series of wooden bridges, connecting the main island and Great Library to the Ethereal Gardens and Temple of the Order of the Gilded Sprout.
-        
-    </p>
-</div>
-<div class="content" id="content-about">
-    <h2>About</h2>
-    <p>The Hinresoul campaign setting was written by Alexander Shapinsky.</p>
-    <a href="map maker.html">map maker (not polished, but works!)</a>
-</div>
-
-
-
-</div>
-<div class="footer">
-    <p style="font-size: 20px; margin: 0%;" xmlns:cc="http://creativecommons.org/ns#">This work by <span property="cc:attributionName">Alexander Shapinsky</span>
-        is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
-            rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img
-                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
-                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img
-                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
-                src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img
-                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
-                src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img
-                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
-                src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>
-</div>
+    <div id="main">
+        <h1>Worldbarrow</h1>
+        <p>project by Alexander Shapinsky this is</p>
+        <button onclick= "window.location.href = 'contentDisplay.html?location=Hinresoul'">Get started!</button>
+        <input placeholder="search...">
+    </div>
+    </div> 
 </body>
 </html>
