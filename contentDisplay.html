@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +13,7 @@
             margin: 0;
             overflow: hidden;
         }
+
         .footer {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             float: left;
@@ -27,6 +29,7 @@
             border-radius: 0px 5px 0 0;
             max-width: calc(100vw - 403px);
         }
+
         #text-content-desktop {
             min-width: 5px;
             width: 400px;
@@ -35,25 +38,32 @@
             top: 0;
             border-left: 3px solid black;
         }
+
         #text-heading h1 {
             margin: 0;
             font-size: 70px;
             text-align: center;
+            white-space: nowrap;
         }
+
         #text-heading p {
             margin: 0;
             text-align: center;
+            white-space: nowrap;
         }
+
         .imgholder {
             text-align: center;
             width: 95vh;
             padding-left: calc((100% - 403px - 95vh) / 2);
             float: left;
         }
+
         #text-heading {
             border-bottom: 3px solid black;
             height: 120px;
         }
+
         .menubutton {
             position: relative;
             width: 50px;
@@ -67,6 +77,7 @@
             border: 3px solid black;
             padding: 0;
         }
+
         .menubutton .icon {
             position: absolute;
             z-index: 1;
@@ -76,18 +87,22 @@
             margin-right: auto;
             width: 100%;
         }
+
         #menu {
             width: fit-content;
             height: 55px;
         }
+
         .menubutton:hover {
-         
+
             background-color: burlywood;
             /*animation will happen*/
         }
+
         .menubutton:hover .hiddenimg {
             visibility: visible;
         }
+
         .hiddenimg {
             position: relative;
             z-index: 5;
@@ -100,6 +115,7 @@
             left: 0;
             float: left;
         }
+
         .content {
             width: 100%;
             margin: 5px;
@@ -109,75 +125,90 @@
             margin-bottom: 0;
             margin-top: 0;
         }
+
         .content h3 {
             margin: 5px;
             margin-bottom: 0px;
             background-color: bisque;
         }
+
         .content ul {
             margin: 0;
             padding: 10px;
             padding-top: 0px;
         }
+
         .content p {
             margin: 0;
 
         }
+
         .content li {
             list-style-type: disc;
             padding: 5px;
         }
+
         .content h2 {
             margin-top: 0;
             margin-bottom: 0;
         }
+
         @media screen and (width < calc(95vh + 405px)) {
             #text-content-desktop {
                 display: none;
             }
-            #mapImg{
+
+            #mapImg {
                 width: calc(50vh - 123px);
             }
+
             #mapoverlay {
                 width: calc(50vh - 123px) !important;
                 left: 0;
-                padding-left: calc((100vw - (50vh - 123px))/2) !important; 
+                padding-left: calc((100vw - (50vh - 123px))/2) !important;
                 height: calc(50vh - 123px) !important;
                 top: auto;
                 top: 123px !important;
 
             }
+
             .imgholder {
                 width: calc(50vh - 123px);
                 padding-left: calc((100vw - (50vh - 123px))/2)
             }
+
             .footer {
-                min-width: 100%; 
+                min-width: 100%;
                 text-align: center;
             }
+
             .content {
                 max-height: calc(50vh - 60px);
             }
+
             #menu {
                 text-align: center;
                 margin-left: calc((100% - 390px)/2);
             }
         }
+
         #text-content-mobile {
             max-height: 50vh;
             bottom: 0;
-            position:absolute;
-            
+            position: absolute;
+
         }
+
         .wide {
             width: 105px;
             font-family: 'Lugrasimo';
             font-size: 20px;
             margin-right: 5px;
         }
+
         #mapoverlay {
             text-align: center;
-            top: 0;            
+            top: 0;
             position: absolute;
             z-index: 5;
             width: 95vh;
@@ -187,24 +218,36 @@
             left: 0;
             /*float: left;*/
         }
+
         path {
             fill: red;
         }
+
         path:hover {
             fill: coral;
         }
-    </style> 
+
+        #test {
+            /*Method helped by https://stackoverflow.com/a/118251*/
+            position: absolute;
+            left: -1000px;
+            min-width: fit-content;
+            visibility: hidden;
+            height: auto;
+            width: auto;
+            white-space: nowrap;
+            /* Thanks to Herb Caudill comment */
+            font-size: 70px;
+        }
+    </style>
     <script>
         var lastselectedID = 0;
-        function setview(id,index)
-        {
-            if(lastselectedID>0)
-            {
-                document.getElementById("H"+lastselectedID).style.background = "bisque"
+        function setview(id, index) {
+            if (lastselectedID > 0) {
+                document.getElementById("H" + lastselectedID).style.background = "bisque"
             }
-            let contentboxes =  document.getElementsByClassName("content")
-            for(let i = 0; i<contentboxes.length; i++)
-            {
+            let contentboxes = document.getElementsByClassName("content")
+            for (let i = 0; i < contentboxes.length; i++) {
                 contentboxes[i].style.height = 0
                 contentboxes[i].style.margin = 0
             }
@@ -212,23 +255,28 @@
             contentboxes[id].style.margin = "5px";
             contentboxes[id].style.marginBottom = "0px"
             contentboxes[id].style.marginTop = "0px"
-            if(index !=undefined && id==4)
-            {
-                document.getElementById("H"+index).scrollIntoView({behavior: 'smooth'});
-                document.getElementById("H"+index).style.background = "darkgrey"
+            if (index != undefined && id == 4) {
+                document.getElementById("H" + index).scrollIntoView({ behavior: 'smooth' });
+                document.getElementById("H" + index).style.background = "darkgrey"
                 lastselectedID = index
             }
-            else{
+            else {
                 lastselectedID = 0
             }
         }
     </script>
 </head>
+
 <body>
-<div id="bodyWithStuff">
-    
-</div>
-<script src="scripts.js"></script>
+    <div id="bodyWithStuff">
+
+    </div>
+    <div id="test"></div>
 
 </body>
+
 </html>
+
+<script src="LocationData.js"></script>
+
+<script src="scripts.js"></script>
