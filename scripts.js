@@ -1,10 +1,11 @@
 let isMobile = window.matchMedia("screen and (width < calc(95vh + 405px))")
 let MOBILE = false
-let contentBodyMobile = `
+
+let locationContentBodyMobile = `
 <div id="text-heading"></div>
 <div class="imgholder">
     <img src="" id="mapImg"/>
-    <svg id="mapoverlay" preserveAspectRatio="1:1">
+    <svg id="mapoverlay">
 
     </svg>
 </div>
@@ -57,10 +58,10 @@ let contentBodyMobile = `
 </div>
 </div>
 `
-let contentBodyDesktop = `
+let locationContentBodyDesktop = `
 <div class="imgholder">
     <img src="" id="mapImg"/>
-    <svg id="mapoverlay" preserveAspectRatio="1:1">
+    <svg id="mapoverlay" >
 
     </svg>
 </div>
@@ -207,7 +208,7 @@ isMobile.addEventListener("change", () => {
     }
 })
 function initDesktop() {
-    document.getElementById("bodyWithStuff").innerHTML = contentBodyDesktop
+    document.getElementById("bodyWithStuff").innerHTML = locationContentBodyDesktop
     init()
 }
 
@@ -250,7 +251,7 @@ function init(runningAsMobile) {
 }
 function addMapPOIOverlay(LOCATION) {
     var svg = document.getElementById('mapoverlay'); //Get svg element
-    svg.setAttribute("viewBox", "0 0 530 530")
+    svg.setAttribute("viewBox", LOCATION.header.viewBoxData)
     for (let i = 0; i < LOCATION.POIs.length; i++) {
         console.log(LOCATION.POIs[i])
         var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); //Create a path in SVG's namespace
@@ -267,7 +268,7 @@ function addMapPOIOverlay(LOCATION) {
 }
 function initMobile() {
     console.log("using mobile version :D")
-    document.getElementById("bodyWithStuff").innerHTML = contentBodyMobile
+    document.getElementById("bodyWithStuff").innerHTML = locationContentBodyMobile
 
     init(true)
 }

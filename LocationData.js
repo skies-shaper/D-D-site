@@ -3,26 +3,30 @@ let locationData = {
         header: {
             title: "The Prime Material Plane",
             flavorText: "The center of it all",
-            img: "none"
-
+            img: "Map of the Plane",
+            viewBoxData: "0 0 508 406.4" 
         },
-        location: "",
+        location: `As told in [layOfBeginnings the Lay of Beginnings], the [conceptsStruggle struggle] between [orderAndChaosSpirits the spirits of order and chaos] produces an endless flow of energy. This energy - _cool name for ittt_ -known variously as ^magic^ or ^soul^ energy spirals throughout the planes, coalescing into the many worlds which make up this universe. The largest coalescences are the elemental planes of ^water^, ^earth^, ^fire^, and ^air^, amidst which all the rest bob and float. Like duckies! _Cool name for the energy of the universe_ all meets, eventually, in the Prime Plane. It is said that in [Ovnor Ovnor], the great Lake at the center of the world, there is an island where one can harness the energy of the universe.`,
 
-        people: "",
-        about: "This is unfinished right now. How's about you head over to [Hinresoul Hinresoul?]",
-        adventureHooks: "",
-        places: "",
-        info: "",
-        creatorName: "",
+        people: ``,
+        about: `^Energy swirls from the outermost depths of the cosmos, drawn evermore towards the center of the Planes^. 
+        Everything ends up here, eventually, in the center of the Planar Gyre.`,
+        adventureHooks: "On the Prime Plane, the possibilities are endless! For adventures, it is recommended to ",
+        places: `There are a great deal of locations on the Prime Plane, each with deep lore and a deeper history.
+        *1. Hinresoul
+        Floating City of the Wise. Find out more about it [Hinresoul here]!`,
+        info: "The Prime Plane of the Worldbarrow campaign setting was created by Alexander Shapinsky.",
+        creatorName: "Alexander Shapinsky",
         POIs: [
-
+            {ID:1, x:222, y :195}
         ]
     },
     "Hinresoul": {
         header: {
             title: "Hinresoul",
             flavorText: "floating city of the wise",
-            img: "Hinresoul"
+            img: "Hinresoul",
+            viewBoxData: "0 0 530 530"
         },
         location: `Hinresoul floats above the Mountain range of Ernos' folly, a forbidding series of high peaks which appear to have been thrust from the earth by some ancient and terrible explosion. Its islands are encased from the bottom with a whitish stone, curiously unlike any found for miles and miles from its location
         It is held in place with a vast magical beam, thrust out of the crystal-encased soul of a long-defeated spirit in the mountains below it.
@@ -80,7 +84,7 @@ let locationData = {
         To a layman, this will appear to be but a broad balcony overlooking the Ethereal Gardens. However, an adept Keeper can cast [SPELL] to see anywhere on this plane from it.
         *-H10: The bridges of Serenity
         Traveling down through a scattering of small floating islets, carpeted in moss, is a series of wooden bridges, connecting the main island and Great Library to the Ethereal Gardens and Temple of the Order of the Gilded Sprout.`,
-        info: "The Hinresoul campaign setting was written by Alexander Shapinsky.",
+        info: "Worldbarrow is the work of Alexander Shapinsky. The Hinresoul region is the work of Alexander Shapinsky",
         creatorName: "Alexander Shapinsky",
         POIs: [
             {ID: 1, x:290,y:230},
