@@ -2,18 +2,32 @@
 <html>
 
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
-
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&amp;display=swap" rel="stylesheet">
     <style>
+        @font-face { 
+            font-family: Lugrasimo; 
+            src: url('Lugrasimo-Regular.ttf'); } 
         body {
             background-color: bisque;
             font-family: 'Lugrasimo';
             margin: 0;
             overflow: hidden;
+            font-size: 15px;
         }
-
+        button {
+            background-color: bisque;
+            border: none;
+            border-bottom: 1px solid black; 
+            font-family: 'Lugrasimo';
+            font-size: 15px;
+            padding: 0px;
+        }
+        button:hover {
+            background-color: burlywood;
+        }
         .footer {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             float: left;
@@ -118,7 +132,21 @@
             left: 0;
             float: left;
         }
-
+        #dieResultPopup{
+            margin-top: 10px;
+            width: 100px;
+            margin-left: 150px;
+            float: left;
+            z-index: 1;
+            border-radius: 5px;
+            height: 20px;
+            background-color: deepskyblue;
+            display: none;
+            position: fixed;
+            text-align: center;
+            animation: showPopup;
+            animation-duration: .5s;
+        }
         .content {
             width: 100%;
             margin: 5px;
@@ -129,8 +157,14 @@
             margin-top: 0;
             padding-right: 5px;
         }
-        #mapImg {
-
+        @keyframes showPopup {
+            from {
+                opacity: 0;
+                
+            }
+            to {
+                opacity: 1;
+            }
         }
         .content h3 {
             margin: 5px;
@@ -199,7 +233,9 @@
                 margin-left: calc((100% - 390px)/2);
             }
         }
+        #dieResultPopupBox {
 
+        }
         #text-content-mobile {
             max-height: 50vh;
             bottom: 0;
@@ -276,6 +312,7 @@
 </head>
 
 <body>
+    <noscript>Um. Boy have I got a funny story to tell you...<br>You should probably turn javascript on if you want to hear it though.</noscript>
     <div id="bodyWithStuff">
 
     </div>
@@ -284,7 +321,6 @@
 </body>
 
 </html>
-<script src="OtherData.js"></script>
-<script src="LocationData.js"></script>
-
-<script src="scripts.js"></script>
+<script type="text/javascript" src="scripts/OtherData.js"></script>
+<script type="text/javascript" src="scripts/LocationData.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>

@@ -1,3 +1,4 @@
+let fontsLoaded = false
 let isMobile = window.matchMedia("screen and (width < calc(95vh + 405px))")
 let MOBILE = false
 
@@ -33,6 +34,7 @@ let locationContentBodyMobile = `
     </button>
     <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
 </div>
+<div id="dieResultPopup"></div>
 <div class="content" id="content-about">
     <h2>Introduction</h2>
 </div>
@@ -91,6 +93,7 @@ let locationContentBodyDesktop = `
     </button>
     <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
 </div>
+<div id="dieResultPopupBox"></div>
 <div class="content" id="content-about">
     <h2>Introduction</h2>
 </div>
@@ -140,11 +143,12 @@ function markupHTMLConversion(text) {
     replacedText = replacedText.replaceAll(/\n/g, "<br>")
     replacedText = replacedText.replaceAll(/_(.+?)_/g, "<strong>$1</strong>")
     replacedText = replacedText.replaceAll(/\^(.+?)\^/g, "<em>$1</em>")
+    replacedText = replacedText.replaceAll(/([0-9]+)d([0-9])+\+([0-9]+)?/g, "<button onclick=\"dieRoll($1,$2,$3)\">$1&#8203;d$2+$3</button>")
+    replacedText = replacedText.replaceAll(/([0-9]+)d([0-9]+)/g, "<button onclick=\"dieRoll($1,$2)\">$&</button>")
 
     return replacedText
 }
 MOBILE = isMobile.matches
-
 if (isMobile.matches) {
     initMobile()
 }
@@ -152,11 +156,22 @@ else {
     initDesktop()
 }
 
+document.fonts.onloadingdone = () =>{
+    fontsLoaded = true;
+    if (isMobile.matches) {
+        initMobile()
+    }
+    else {
+        initDesktop()
+    }
+ };
+
 function resizeHeader() {
+    
     let headerText = document.getElementById("mainHeader").textContent
     let fText = document.getElementById("mainFlavorText").textContent
-    let boundWidth = MOBILE ? (window.innerWidth-30) : 380
-    
+    let boundWidth = MOBILE ? (window.innerWidth - 30) : 380
+
 
     let measuredWidth = document.getElementById("test")
     measuredWidth.innerText = headerText
@@ -164,8 +179,8 @@ function resizeHeader() {
     if (measuredWidth.clientWidth > boundWidth) {
         let fs = 70
         while (measuredWidth.clientWidth > boundWidth) {
-            
-         // now you have a proper float for the font size (yes, it can be a float, not just an integer)
+
+            // now you have a proper float for the font size (yes, it can be a float, not just an integer)
             measuredWidth.style.fontSize = `${fs--}px`
             //console.log(header.style.fontSize)
         }
@@ -179,8 +194,8 @@ function resizeHeader() {
     if (measuredWidth.clientWidth > boundWidth) {
         let fs = 15
         while (measuredWidth.clientWidth > boundWidth) {
-            
-         // now you have a proper float for the font size (yes, it can be a float, not just an integer)
+
+            // now you have a proper float for the font size (yes, it can be a float, not just an integer)
             measuredWidth.style.fontSize = `${fs--}px`
             //console.log(header.style.fontSize)
         }
@@ -190,7 +205,8 @@ function resizeHeader() {
     }
 
 }
-window.onresize = ()=>{
+window.onresize = () => {
+    MOBILE = isMobile.matches
     if (isMobile.matches) {
         initMobile()
     }
@@ -208,11 +224,12 @@ isMobile.addEventListener("change", () => {
     }
 })
 function initDesktop() {
+
     document.getElementById("bodyWithStuff").innerHTML = locationContentBodyDesktop
     init()
 }
 
-function init(runningAsMobile) {
+function init() {
 
     let searchParams = new URLSearchParams(document.location.search);
     console.log("aaa")
@@ -222,7 +239,7 @@ function init(runningAsMobile) {
     if (searchParams.has("location")) {
 
         LOCATION = locationData[searchParams.get("location")]
-
+        document.title = "Worldbarrow - " + LOCATION.header.title + " by " + LOCATION.creatorName
         document.getElementById("text-heading").innerHTML = `<h1 id="mainHeader">${markupHTMLConversion(LOCATION.header.title)}</h1><p id="mainFlavorText">${markupHTMLConversion(LOCATION.header.flavorText)}</p>`
 
         document.getElementById("content-about").innerHTML = "<h2>Introduction</h2>" + markupHTMLConversion(LOCATION.about)
@@ -232,8 +249,8 @@ function init(runningAsMobile) {
         document.getElementById("content-hooks").innerHTML = "<h2>Adventure Hooks</h2>" + markupHTMLConversion(LOCATION.adventureHooks)
         document.getElementById("content-places").innerHTML = `<h2>Places of interest within ${LOCATION.header.title}</h2>` + markupHTMLConversion(LOCATION.places)
         document.getElementById("content-info").innerHTML = "<h2>About</h2>" + markupHTMLConversion(LOCATION.info) + `<p style="bottom: 0px; margin: 0%;" xmlns:cc="http://creativecommons.org/ns#">It is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>`
-        if(!MOBILE){
-        document.getElementById("creatorNameAttribution").innerText = markupHTMLConversion(LOCATION.creatorName)
+        if (!MOBILE) {
+            document.getElementById("creatorNameAttribution").innerText = markupHTMLConversion(LOCATION.creatorName)
         }
         let numHs = 1
         for (let i = 0; i < document.getElementById("content-places").children.length; i++) {
@@ -246,10 +263,12 @@ function init(runningAsMobile) {
         addMapPOIOverlay(LOCATION)
         resizeHeader()
         setview(0)
+
     }
 
 }
 function addMapPOIOverlay(LOCATION) {
+
     var svg = document.getElementById('mapoverlay'); //Get svg element
     svg.setAttribute("viewBox", LOCATION.header.viewBoxData)
     for (let i = 0; i < LOCATION.POIs.length; i++) {
@@ -267,8 +286,29 @@ function addMapPOIOverlay(LOCATION) {
     }
 }
 function initMobile() {
-    console.log("using mobile version :D")
     document.getElementById("bodyWithStuff").innerHTML = locationContentBodyMobile
+    init()
+}
+function dieRoll(a, b, c) {
+    let finalNum = 0
+    for (let i = 0; i < a; i++) {
+        finalNum += Math.floor(Math.random() * b) + 1
+    }
+    if (typeof c != "undefined") {
+        finalNum += c
 
-    init(true)
+    }
+    document.getElementById("dieResultPopupBox").innerHTML = "<div id=\"dieResultPopup\"></div>"
+    document.getElementById("dieResultPopup").style.display = "block"
+    if(typeof c != "undefined"){
+        document.getElementById("dieResultPopup").textContent = `${a}d${b}+${c}: ` + finalNum
+    }
+    else{
+        document.getElementById("dieResultPopup").textContent = `${a}d${b}: ` + finalNum
+    }
+    setTimeout(() => {
+        document.getElementById("dieResultPopup").style.display = "none"
+    }, 1500)
+
+
 }
