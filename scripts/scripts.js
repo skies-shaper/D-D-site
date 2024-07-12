@@ -1,9 +1,15 @@
 let fontsLoaded = false
 let isMobile = window.matchMedia("screen and (width < calc(95vh + 405px))")
 let MOBILE = false
-
+let otherContent = `
+    <div id="dieResultPopupBox"></div>
+    <div id="otherHeader"></div>
+    <div id="otherImg"></div>
+    <div id="otherData"></div>
+`
 let locationContentBodyMobile = `
-<div id="text-heading"></div>
+<div id="text-heading"><h1>Ooops</h1>
+<p>That appears to be an invalid link :( <a style="text-align: center;" href="home.html">Wanna head home?</a></div>
 <div class="imgholder">
     <img src="" id="mapImg"/>
     <svg id="mapoverlay">
@@ -69,6 +75,9 @@ let locationContentBodyDesktop = `
 </div>
 <div id="text-content-desktop">
 <div id="text-heading">
+<h1 style="font-size: 50px;">Ooops</h1>
+<p>That appears to be an invalid link :(<br><a style="text-align: center;" href="home.html">Wanna head home?</a>
+</p>
 </div>
 <div id="menu">
     <button class="menubutton" onclick="setview(0)" id="about">
@@ -136,9 +145,10 @@ function markupHTMLConversion(text) {
     replacedText = text
     replacedText = replacedText.replaceAll(/</g, "&lt;")
     replacedText = replacedText.replaceAll(/>/g, "&rt;")
+    replacedText = replacedText.replaceAll(/\&/g, "&amp;")
     replacedText = replacedText.replaceAll(/\*(.+)[\n]/g, `<h3>$1</h3>`)
 
-    replacedText = replacedText.replace(/\[(\S+) (.+?)\]/g, `<a href="contentDisplay.html\?location=$1">$2</a>`)
+    replacedText = replacedText.replace(/\[(\S+) (.+?)\]/g, `<a href="contentDisplay.html\?content=$1">$2</a>`)
 
     replacedText = replacedText.replaceAll(/\n/g, "<br>")
     replacedText = replacedText.replaceAll(/_(.+?)_/g, "<strong>$1</strong>")
@@ -224,22 +234,82 @@ isMobile.addEventListener("change", () => {
     }
 })
 function initDesktop() {
-
     document.getElementById("bodyWithStuff").innerHTML = locationContentBodyDesktop
     init()
 }
-
+function s(text){ //quick desanitization of all tags :D hopefully should make things pretty good :D ... 
+    return(text.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&rt;").replaceAll(/\&/g, "&amp;"))
+}
 function init() {
 
     let searchParams = new URLSearchParams(document.location.search);
-    console.log("aaa")
-
+    let SEARCH = 0
     let LOCATION
-
-    if (searchParams.has("location")) {
-
-        LOCATION = locationData[searchParams.get("location")]
-        document.title = "Worldbarrow - " + LOCATION.header.title + " by " + LOCATION.creatorName
+    if(searchParams.has("content")){
+        if(Object.hasOwn(locationData,searchParams.get("content")))
+        {
+            SEARCH = 0
+        }
+        else
+        {
+            SEARCH = 1
+        }
+    }
+    if(SEARCH == 1){
+        LOCATION = otherData[searchParams.get("content")]
+        document.getElementById("bodyWithStuff").innerHTML = otherContent
+        document.getElementsByTagName("body")[0].style.overflow = "auto"
+        MOBILE = false;
+        if(LOCATION.type == "monster"){
+            document.getElementById("otherHeader").innerHTML = `<h1>${s(LOCATION.data.name)}</h1><p>${s(LOCATION.data.size)} ${s(LOCATION.data.type)}, ${s(LOCATION.data.alignment)}`
+            if(LOCATION.src != ""){
+                document.getElementById("otherImg").innerHTML = `<img src="${LOCATION.src}">`
+            }
+            document.getElementById("otherData").innerHTML = `
+            <div class="blockSection blandFont">
+                <strong>Armor Class&nbsp; </strong>${markupHTMLConversion(LOCATION.data.AC)}<br>
+                <strong>Hit Points&nbsp; </strong>${markupHTMLConversion(LOCATION.data.HP)}<br>
+                <strong>Speed&nbsp; </strong>${s(LOCATION.data.speed)}
+            </div>
+            <div class="blockSection">
+                <table>
+                    <tr>
+                        <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
+                    </tr>    
+                    <tr>
+                        <td>${s(LOCATION.data.STR)}</td><td>${s(LOCATION.data.DEX)}</td><td>${s(LOCATION.data.CON)}</td><td>${s(LOCATION.data.INT)}</td><td>${s(LOCATION.data.WIS)}</td><td>${s(LOCATION.data.CHA)}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="blockSection blandFont">
+                ${s(LOCATION.data.savingThrows)==""? "":`<strong>Saving Throws&nbsp; </strong>${s(LOCATION.data.savingThrows)}<br>`}
+                ${s(LOCATION.data.skillMods)==""? "":`<strong>Skills&nbsp; </strong>${s(LOCATION.data.skillMods)}<br>`}
+                ${s(LOCATION.data.damageResistances)==""? "":`<strong>Damage Resistances&nbsp; </strong>${s(LOCATION.data.damageResistances)}<br>`}
+                ${s(LOCATION.data.damageImmunities)==""? "":`<strong>Damage Immunities&nbsp; </strong>${s(LOCATION.data.damageImmunities)}<br>`}
+                ${s(LOCATION.data.conditionImmunities)==""? "":`<strong>Condition Immunities&nbsp; </strong>${s(LOCATION.data.conditionImmunities)}<br>`}
+                
+                <strong>Senses&nbsp; </strong>${s(LOCATION.data.senses)}<br>
+                <strong>Languages&nbsp; </strong>${s(LOCATION.data.languages)==""? "&mdash;" : s(LOCATION.data.languages)}<br>
+                <strong>Challenge&nbsp; </strong>${s(LOCATION.data.CR)}
+            </div>
+            <div class="blockSection">
+                <p>${markupHTMLConversion(LOCATION.data.modifiers)}</p>
+                <h2>Actions</h2>
+            </div>
+            <div class="blockSection">
+                
+                <p>${markupHTMLConversion(LOCATION.data.actions)}</p>
+            </div>
+            <div class="blockSection" style="border-bottom: none;">
+                <p>${markupHTMLConversion(LOCATION.data.description)}</p>
+            </div>
+            `
+            
+        }
+    }
+    if (SEARCH ==0) {
+        LOCATION = locationData[searchParams.get("content")]
+        document.title = "Worldbarrow - " + s(LOCATION.header.title) + " by " + s(LOCATION.creatorName)
         document.getElementById("text-heading").innerHTML = `<h1 id="mainHeader">${markupHTMLConversion(LOCATION.header.title)}</h1><p id="mainFlavorText">${markupHTMLConversion(LOCATION.header.flavorText)}</p>`
 
         document.getElementById("content-about").innerHTML = "<h2>Introduction</h2>" + markupHTMLConversion(LOCATION.about)
@@ -263,7 +333,7 @@ function init() {
         addMapPOIOverlay(LOCATION)
         resizeHeader()
         setview(0)
-
+        
     }
 
 }

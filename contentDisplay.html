@@ -6,6 +6,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+
+
+
     <style>
         @font-face { 
             font-family: Lugrasimo; 
@@ -94,7 +99,7 @@
             border: 3px solid black;
             padding: 0;
         }
-
+        
         .menubutton .icon {
             position: absolute;
             z-index: 1;
@@ -272,7 +277,7 @@
         }
 
         #test {
-            /*Method helped by https://stackoverflow.com/a/118251*/
+            /*Method helped by https://stackoverflow.com/a/118251 */
             position: absolute;
             left: -1000px;
             min-width: fit-content;
@@ -280,8 +285,66 @@
             height: auto;
             width: auto;
             white-space: nowrap;
-            /* Thanks to Herb Caudill comment */
             font-size: 70px;
+        }
+        /*Above this: stuff for locations etc.
+          Below this: stuff for monster displays*/
+        #otherHeader {
+            margin-left: 5px;
+            border-bottom: 3px solid darkred;
+            width: min(400px, 100%);
+        }
+        #otherData {
+            margin: 5px;
+            padding-bottom: 5px;
+            overflow: auto;
+        }
+        #otherImage {
+            margin-left: 5px;
+        }
+        #otherHeader h1 {
+            margin-bottom: 0px;
+        }
+        #otherHeader p {
+            margin: 5px;
+            margin-left: 0px;
+        }
+        #otherImg {
+            max-width: min(400px, 100%);
+        }
+        .blockSection {
+
+            width: min(400px, 100%);
+            border-bottom: 3px solid darkred;
+            font-size: 15px;
+        }
+        .blockSection th {
+            font-family: 'Averia Serif Libre';
+            font-weight: bolder;
+            font-size: 13px;
+        }
+        .blockSection td {
+            font-family: 'Averia Serif Libre';
+            width: 67px;
+            font-size: 13px;
+            text-align: center;
+        }
+        .blockSection h2 {
+            margin: 5px;
+            margin-left: 0px;
+        }
+        .blockSection p {
+            margin: 5px;
+            margin-left: 0px;
+        }
+        .blandFont {
+            font-family: 'Averia Serif Libre';
+            font-size: 15px;
+        }
+        strong {
+            font-weight: bolder;
+            font-family: 'Averia Serif Libre';
+            font-size: 17px;
         }
     </style>
     <script>
