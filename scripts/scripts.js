@@ -34,7 +34,7 @@ let locationContentBodyMobile = `
     </button>
     <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
 </div>
-<div id="dieResultPopup"></div>
+<div id="dieResultPopupBox"></div>
 <div class="content" id="content-about">
     <h2>Introduction</h2>
 </div>
