@@ -238,10 +238,16 @@ function initDesktop() {
     init()
 }
 function s(text){ //quick desanitization of all tags :D hopefully should make things pretty good :D ... 
+    if(typeof text != 'string'){
+        return ""
+    }
     return(text.replaceAll(/</g, "&lt;").replaceAll(/>/g, "&rt;").replaceAll(/\&/g, "&amp;"))
 }
-function init() {
 
+function init() {
+    console.log(Object.keys(otherData))
+    console.log(Object.keys(locationData))
+    
     let searchParams = new URLSearchParams(document.location.search);
     let SEARCH = 0
     let LOCATION
@@ -260,6 +266,63 @@ function init() {
         document.getElementById("bodyWithStuff").innerHTML = otherContent
         document.getElementsByTagName("body")[0].style.overflow = "auto"
         MOBILE = false;
+        if(LOCATION.type == "article"){
+            document.getElementById("otherHeader").innerHTML = `<h3>${s(LOCATION.data.name)}</h3><p class="smallsubtext">${s(LOCATION.data.subtitle)}</p>
+            `
+            document.getElementById("otherData").innerHTML = `
+            ${markupHTMLConversion(LOCATION.data.mainContent)}
+            `
+            if(LOCATION.src != ""){
+                document.getElementById("otherImg").innerHTML = `<img src="${LOCATION.src}">`
+            }            document.getElementById("otherHeader").classList.add("spell")
+            document.getElementById("otherData").classList.add("spell")
+        }
+        if(LOCATION.type == "character"){
+            document.getElementById("otherHeader").innerHTML = `<h3>${s(LOCATION.data.name)}</h3><p class="smallsubtext">${s(LOCATION.data.race)} ${s(LOCATION.data.class)}</p>
+            `
+            document.getElementById("otherData").innerHTML = `
+            ${markupHTMLConversion(LOCATION.data.description)}
+            `
+            if(LOCATION.src != ""){
+                document.getElementById("otherImg").innerHTML = `<img src="${LOCATION.src}">`
+            }            document.getElementById("otherHeader").classList.add("spell")
+            document.getElementById("otherData").classList.add("spell")
+        }
+        if(LOCATION.type == "item") {
+            document.getElementById("otherHeader").innerHTML = `<h3>${s(LOCATION.data.name)}</h3><p class="smallsubtext">${s(LOCATION.data.type)}, ${s(LOCATION.data.rarity)}</p>
+            `
+            document.getElementById("otherData").innerHTML = `
+            ${markupHTMLConversion(LOCATION.data.description)}
+            `
+            if(LOCATION.src != ""){
+                document.getElementById("otherImg").innerHTML = `<img src="${LOCATION.src}">`
+            }            document.getElementById("otherHeader").classList.add("spell")
+            document.getElementById("otherData").classList.add("spell")
+        }
+        if(LOCATION.type == "spell") {
+            let spellLevel = ""
+            if(s(LOCATION.data.level)=="cantrip")
+            {
+                spellLevel = s(LOCATION.data.school)+'cantrip'
+            }
+            else{
+                let i = LOCATION.data.level
+                spellLevel =i + ((i==1)  ? "st": ((i==2? "nd": (i==3? "rd" : "th")))) + " level "+s(LOCATION.data.school)
+            }
+
+            document.getElementById("otherHeader").innerHTML = `<h3>${s(LOCATION.data.name)}</h3><p class="smallsubtext">${spellLevel}</p>
+            `
+            document.getElementById("otherData").innerHTML = `
+            <strong>Casting Time: </strong>${s(LOCATION.data.castingTime)}<br>
+            <strong>Range: </strong>${s(LOCATION.data.range)}<br>
+            <strong>Components: </strong>${s(LOCATION.data.components)}<br>
+            <strong>Duration: </strong>${s(LOCATION.data.duration)}<br>
+            <div style="height: 7px; width: 100%;"></div>${markupHTMLConversion(LOCATION.data.description)}
+            `
+            document.getElementById("otherHeader").classList.add("spell")
+            document.getElementById("otherData").classList.add("spell")
+
+        }
         if(LOCATION.type == "monster"){
             document.getElementById("otherHeader").innerHTML = `<h1>${s(LOCATION.data.name)}</h1><p>${s(LOCATION.data.size)} ${s(LOCATION.data.type)}, ${s(LOCATION.data.alignment)}`
             if(LOCATION.src != ""){
