@@ -17,8 +17,8 @@ let locationData = {
         places: `There are a great deal of locations on the Prime Plane, each with deep lore and a deeper history.
         *1. Hinresoul
         Floating City of the Wise. Find out more about it [Hinresoul here]!`,
-        info: "The Prime Plane of the Worldbarrow campaign setting was created by Alexander Shapinsky.",
-        creatorName: "Alexander Shapinsky",
+        info: "The Prime Plane of the Worldbarrow campaign setting was created by SkiesShaper.",
+        creatorName: "SkiesShaper",
         POIs: [
             {ID:1, x:222, y :195}
         ]
@@ -86,8 +86,8 @@ let locationData = {
         To a layman, this will appear to be but a broad balcony overlooking the Ethereal Gardens. However, an adept Keeper can cast [SPELL] to see anywhere on this plane from it.
         *-H10: The bridges of Serenity
         Traveling down through a scattering of small floating islets, carpeted in moss, is a series of wooden bridges, connecting the main island and Great Library to the Ethereal Gardens and Temple of the Order of the Gilded Sprout.`,
-        info: "The Hinresoul region is the work of Alexander Shapinsky",
-        creatorName: "Alexander Shapinsky",
+        info: "The Hinresoul region is the work of SkiesShaper",
+        creatorName: "SkiesShaper",
         POIs: [
             {ID: 1, x:290,y:230},
             {ID: 2, x:280,y:300},

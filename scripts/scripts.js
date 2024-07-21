@@ -146,7 +146,11 @@ function markupHTMLConversion(text) {
     replacedText = replacedText.replaceAll(/</g, "&lt;")
     replacedText = replacedText.replaceAll(/>/g, "&rt;")
     replacedText = replacedText.replaceAll(/\&/g, "&amp;")
+    
+    
     replacedText = replacedText.replaceAll(/\*(.+)[\n]/g, `<h3>$1</h3>`)
+    
+
 
     replacedText = replacedText.replace(/\[(\S+) (.+?)\]/g, `<a href="contentDisplay.html\?content=$1">$2</a>`)
 
@@ -155,7 +159,8 @@ function markupHTMLConversion(text) {
     replacedText = replacedText.replaceAll(/\^(.+?)\^/g, "<em>$1</em>")
     replacedText = replacedText.replaceAll(/([0-9]+)d([0-9])+\+([0-9]+)?/g, "<button onclick=\"dieRoll($1,$2,$3)\">$1&#8203;d$2+$3</button>")
     replacedText = replacedText.replaceAll(/([0-9]+)d([0-9]+)/g, "<button onclick=\"dieRoll($1,$2)\">$&</button>")
-
+    replacedText = replacedText.replaceAll(/([0-9]+)d([0-9])+\-([0-9]+)?/g, "<button onclick=\"dieRollM($1,$2,$3)\">$1&#8203;d$2+$3</button>")
+    console.log(replacedText)
     return replacedText
 }
 MOBILE = isMobile.matches
@@ -245,8 +250,8 @@ function s(text){ //quick desanitization of all tags :D hopefully should make th
 }
 
 function init() {
-    console.log(Object.keys(otherData))
-    console.log(Object.keys(locationData))
+    //console.log(Object.keys(otherData))
+    //console.log(Object.keys(locationData))
     
     let searchParams = new URLSearchParams(document.location.search);
     let SEARCH = 0
@@ -274,7 +279,8 @@ function init() {
             `
             if(LOCATION.src != ""){
                 document.getElementById("otherImg").innerHTML = `<img src="${LOCATION.src}">`
-            }            document.getElementById("otherHeader").classList.add("spell")
+            }            
+            document.getElementById("otherHeader").classList.add("spell")
             document.getElementById("otherData").classList.add("spell")
         }
         if(LOCATION.type == "character"){
@@ -429,6 +435,30 @@ function dieRoll(a, b, c) {
     }
     if (typeof c != "undefined") {
         finalNum += c
+
+    }
+    document.getElementById("dieResultPopupBox").innerHTML = "<div id=\"dieResultPopup\"></div>"
+    document.getElementById("dieResultPopup").style.display = "block"
+    if(typeof c != "undefined"){
+        document.getElementById("dieResultPopup").textContent = `${a}d${b}+${c}: ` + finalNum
+    }
+    else{
+        document.getElementById("dieResultPopup").textContent = `${a}d${b}: ` + finalNum
+    }
+    setTimeout(() => {
+        document.getElementById("dieResultPopup").style.display = "none"
+    }, 1500)
+
+
+}
+
+function dieRollM(a, b, c) {
+    let finalNum = 0
+    for (let i = 0; i < a; i++) {
+        finalNum += Math.floor(Math.random() * b) + 1
+    }
+    if (typeof c != "undefined") {
+        finalNum -= c
 
     }
     document.getElementById("dieResultPopupBox").innerHTML = "<div id=\"dieResultPopup\"></div>"

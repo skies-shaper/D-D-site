@@ -30,6 +30,8 @@
             background-color: deepskyblue;
             border: none;
             padding: 5px;
+
+            width: 140;
             
         }
         #main button:hover {
@@ -61,35 +63,65 @@
         }
         #searchBox {
             margin: 5px;
+            margin-top: 0px;
             width: fit-content;
             float:left;
         }
         #searchResults {
-            width: 200px;
+            margin-left: 4px;
+            width: 202px;
+            background-color: whitesmoke;
+            z-index: 2;
+            position: absolute;
         }
         #toolbar {
-            margin-left: calc((100% - 605px) / 2);
+            margin-left: calc((100% - 402px) / 2);
             display: block;
+            height: 80px;
+            width: fit-content;
+        }
+        .searchResultButton {
+            width: 100%;
+            background-color: whitesmoke !important;
+            border-radius: 0px !important;
+            border-bottom: 1px solid black !important;
+        }
+        .searchResultButton:hover {
+            background-color: lightblue !important;
+        }
+        #searchbar:focus{
+            background-color: darkgoldenrod;
+            outline: none;
         }
 </style> 
 </head>
 <body>
     <div id="main">
         <h1>Worldbarrow</h1>
-        <p>A project by Alexander Shapinsky</p>
+        <p>A project by SkiesShaper</p>
         <div id="toolbar">
             <button onclick= "window.location.href = 'contentDisplay.html?content=Primeplane'">Get started!</button>
+            <button style="margin-left: 5px;" onclick="window.location.href = 'settings.html'">About</button>
             <div id="searchBox">
-                <input id="searchbar" placeholder="search...">
+                <input id="searchbar" placeholder="search..." autocomplete="off"  onfocus="search()">
                 <div id="searchResults"></div>
             </div>
+            
         </div>
         </div>
     </div>
     <div id="news">
+        <div class="newsArticle" id="07-20-24a">
+            <H2>July 20, 2024</H2>
+            <p>The main search bar is added and fully functional!</p>
+            <p>This is the only addition, along with an about/settings page.</p>
+            <h3>To Do:</h3>
+            <p>Back buttons maybe</p>
+            <p>Everything else</p>
+        </div>
         <div class="newsArticle" id="07-12-24b">
             <H2>July 12, 2024 (late night)</H2>
-            <p>All content page types are added. An NPC (a character with stats) can use the monster page I think.            </p>
+            <p>All content page types are added. An NPC (a character with stats) can use the monster page I think.</p>
             <p>Added several articles (some characters, some items, a monster...)</p>
             <p>Added a way to make a list of all of the different articles, with both title and ID stored</p>
             <h3>To Do</h3>
