@@ -6,7 +6,7 @@ let locationData = {
             img: "Map of the Plane",
             viewBoxData: "0 0 508 406.4" 
         },
-        location: `As told in [layOfBeginnings the Lay of Beginnings], the [conceptsStruggle struggle] between [orderAndChaosSpirits the spirits of order and chaos] produces an endless flow of energy. This energy - _cool name for ittt_ -known variously as ^magic^ or ^soul^ energy spirals throughout the planes, coalescing into the many worlds which make up this universe. The largest coalescences are the elemental planes of ^water^, ^earth^, ^fire^, and ^air^, amidst which all the rest bob and float. Like duckies! _Cool name for the energy of the universe_ all meets, eventually, in the Prime Plane. It is said that in [Ovnor Ovnor], the great Lake at the center of the world, there is an island where one can harness the energy of the universe.`,
+        location: `As told in [a layOfBeginnings the Lay of Beginnings], the [a conceptsStruggle struggle] between [a orderAndChaosSpirits the spirits of order and chaos] produces an endless flow of energy. This energy - _cool name for ittt_ -known variously as ^magic^ or ^soul^ energy spirals throughout the planes, coalescing into the many worlds which make up this universe. The largest coalescences are the elemental planes of ^water^, ^earth^, ^fire^, and ^air^, amidst which all the rest bob and float. Like duckies! _Cool name for the energy of the universe_ all meets, eventually, in the Prime Plane. It is said that in [a Ovnor Ovnor], the great Lake at the center of the world, there is an island where one can harness the energy of the universe.`,
 
         people: ``,
         about: `^Energy swirls from the outermost depths of the cosmos, drawn evermore towards the center of the Planes^. 
@@ -16,7 +16,7 @@ let locationData = {
         adventureHooks: "On the Prime Plane, the possibilities are endless! For adventures, it is recommended to ",
         places: `There are a great deal of locations on the Prime Plane, each with deep lore and a deeper history.
         *1. Hinresoul
-        Floating City of the Wise. Find out more about it [Hinresoul here]!`,
+        Floating City of the Wise. Find out more about it [a Hinresoul here]!`,
         info: "The Prime Plane of the Worldbarrow campaign setting was created by SkiesShaper.",
         creatorName: "SkiesShaper",
         POIs: [
@@ -32,8 +32,8 @@ let locationData = {
         },
         location: `Hinresoul floats above the Mountain range of Ernos' folly, a forbidding series of high peaks which appear to have been thrust from the earth by some ancient and terrible explosion. Its islands are encased from the bottom with a whitish stone, curiously unlike any found for miles and miles from its location
         It is held in place with a vast magical beam, thrust out of the crystal-encased soul of a long-defeated spirit in the mountains below it.
-        Directly to its north and east is Lake Ovnor, and ships from its small haven will primarily traverse the [skyTrails sky-trails] down to one of that great lake's principal ports. Occasionally they will come from as far as the elven kingdoms in the far east, Mensch-Kaoul, or one of the warring kingdoms in the west.
-        Directly to the south of Hinresoul is a dense forest, which gives way to arid badlands within a few hundred miles. The [greatMaw Great Maw] opens some three hundred miles to Hinresoul's south. To the west is the great river and the fertile, rocky lands which surround it.`,
+        Directly to its north and east is Lake Ovnor, and ships from its small haven will primarily traverse the [a skyTrails sky-trails] down to one of that great lake's principal ports. Occasionally they will come from as far as the elven kingdoms in the far east, Mensch-Kaoul, or one of the warring kingdoms in the west.
+        Directly to the south of Hinresoul is a dense forest, which gives way to arid badlands within a few hundred miles. The [a greatMaw Great Maw] opens some three hundred miles to Hinresoul's south. To the west is the great river and the fertile, rocky lands which surround it.`,
         people: "Sorry, this page is currently empty :(",
         about : `Hinresoul stands above the great mountains of Ernos' Folly, its islands held in place by a beam of energy thrust out of the crystal-encased soul of a spirit of death which was defeated in ancient times by a great hero. Its population is _small_, measuring just over 600 people. Of those 600 or so full-time residents, the vast majority are members of one of the three orders who hold court on these islands, founded in the wake of the defeat of the Great Spirit of Death which gave this town its power. They are:
         *-The Smiths of the Three Suns

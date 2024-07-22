@@ -132,7 +132,7 @@ let otherData  = {
         data: {
             name: "The Illochu",
             subtitle: "Ardu subgroup",
-            mainContent: `A subgroup of the ^[Ardu Ardu]^  (this setting's Humans), the Illochu are wanderers through the Continent in the Ardu realms [directionsPP Ad-Isto] of the Dwarven mountains.`
+            mainContent: `A subgroup of the ^[a Ardu Ardu]^  (this setting's Humans), the Illochu are wanderers through the Continent in the Ardu realms [a directionsPP Ad-Isto] of the Dwarven mountains.`
         }
 
     },
@@ -149,9 +149,55 @@ let otherData  = {
             _Ad-Rune_ (Plane of Earth)
             _Ad-Sus_ (Plane of Air)
             The directions _Ad-Sha_ (towards the rim) and _Ad-Krin_ (towards the center) are also used for contextual purposes.
-            The directions are named using _Ad_, the [Varlossik Varlossik] term for "Way", and the terms for Fire, Wave, Earth, Wind, Center and Ending.`
+            The directions are named using _Ad_, the [a Varlossik Varlossik] term for "Way", and the terms for Fire, Wave, Earth, Wind, Center and Ending.
+            """ahsdioa`
         }
 
+    },
+    "exampleCampaign":{
+        type: "article",
+        src:"",
+        data: {
+            name: "Super Fun Campaign",
+            subtitle: "wow!",
+            mainContent: `*Welcome to the Campaign!
+            [h 1 1: Stuff]
+            asdasdasd
+            asdas
+            [j 2 Fight the Thing]
+            a
+            a
+            a
+            a
+            a
+            aa
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+
+            aa
+            a
+            a
+
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+            a
+            [h 2 2: Fight The Thing]
+            `
+
+        }
     },
     "Aradielgnome":{
         type: "character",
@@ -160,7 +206,7 @@ let otherData  = {
             name: "Aradiel Riverstone",
             race: "Forest Gnome",
             class: "Ranger",
-            description: `Raised in the [OroudanForest Oroudan Forest], Aradiel was abandoned by her parents at a young age after forsaking their gnomish craftings in exchange for a life of Adventure. She befriended a band of the ^[ArduSubgroupsIllochu Illochu]^, who taught her the ways of the Wilds.`
+            description: `Raised in the [a OroudanForest Oroudan Forest], Aradiel was abandoned by her parents at a young age after forsaking their gnomish craftings in exchange for a life of Adventure. She befriended a band of the ^[a ArduSubgroupsIllochu Illochu]^, who taught her the ways of the Wilds.`
         }
     },
     "LPSMHelm":{
@@ -183,7 +229,7 @@ let otherData  = {
             components: "V, S, M (A summoning focus and a small gemstone)",
             range: "60 feet",
             castingTime: "5 minutes",
-            description: `You summon a ^[minorSpirits minor spirit]^ into an empty space in a 60 foot range around you by concentrating your summoning focus into the gemstone, creating a planar gate through which the spirit is drawn.
+            description: `You summon a ^[a minorSpirits minor spirit]^ into an empty space in a 60 foot range around you by concentrating your summoning focus into the gemstone, creating a planar gate through which the spirit is drawn.
             _Summoning focuses:_ 
             ^Guide Spirit:^ a small magnetized needle`
         }
@@ -217,7 +263,7 @@ let otherData  = {
             actions:`^_Guide._^ A Guide Spirit will use its action to fly towards the location it acts as a guide to. It will take the path most optimized for those following it, unless it was specified to do otherwise by its summoner. While it cannot speak, it emits a faint telepathic signal (accompanied by whistling and chirp noises) indicating it is meant to guide an individual or group of individuals towards a goal.
             ^_Hide._^ A Guide Spirit can use its action to cast ^Invisibility^ on itself if the group it has been sent to protect is in danger.`,
             modifiers: "",
-            description: "A ^Guide Spirit^ is a [CreaturecategorySpirit spirit] summoned by a Magic-User in order to guide a person or group of people towards an object or goal. They can be summoned using [spiritSummonMinor Summon Minor Spirit], with a small magnetized needle used as the ^summoning focus^. Though, as a sprit, an unsummoned Guide Spirit is not aligned, they will most often take the alignment of their summoner, though this represents the aims of their guidance more than their actions, as all guide spirits will act much the same; taking the ^guide^ action when possible, resting with their party when necessary and ^hiding^ in combat."    
+            description: "A ^Guide Spirit^ is a [a CreaturecategorySpirit spirit] summoned by a Magic-User in order to guide a person or group of people towards an object or goal. They can be summoned using [a spiritSummonMinor Summon Minor Spirit], with a small magnetized needle used as the ^summoning focus^. Though, as a sprit, an unsummoned Guide Spirit is not aligned, they will most often take the alignment of their summoner, though this represents the aims of their guidance more than their actions, as all guide spirits will act much the same; taking the ^guide^ action when possible, resting with their party when necessary and ^hiding^ in combat."    
         }
     },
     "Worldweaver": {

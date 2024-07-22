@@ -143,16 +143,23 @@ let locationTemplate = {
 function markupHTMLConversion(text) {
     let replacedText = ""
     replacedText = text
+    replacedText = replacedText.replaceAll(/\&/g, "&amp;")
+
     replacedText = replacedText.replaceAll(/</g, "&lt;")
     replacedText = replacedText.replaceAll(/>/g, "&rt;")
-    replacedText = replacedText.replaceAll(/\&/g, "&amp;")
-    
+    replacedText = replacedText.replaceAll(/\"/g, "&quot;")
+
     
     replacedText = replacedText.replaceAll(/\*(.+)[\n]/g, `<h3>$1</h3>`)
     
 
 
-    replacedText = replacedText.replace(/\[(\S+) (.+?)\]/g, `<a href="contentDisplay.html\?content=$1">$2</a>`)
+    replacedText = replacedText.replace(/\[a (\S+) (.+?)\]/g, `<a href="contentDisplay.html\?content=$1">$2</a>`)
+    replacedText = replacedText.replace(/\[i (\S+) (.+?)\]/g, `<img src="$1" alt="$2"></img>`)
+    
+    replacedText = replacedText.replace(/\[j (\S+) (.+?)\]/g, `<a href="#$1">$2</a>`)
+    replacedText = replacedText.replace(/\[h (\S+) (.+?)\]/g, `<h3 id="$1">$2</h3>`)
+
 
     replacedText = replacedText.replaceAll(/\n/g, "<br>")
     replacedText = replacedText.replaceAll(/_(.+?)_/g, "<strong>$1</strong>")
@@ -257,6 +264,10 @@ function init() {
     let SEARCH = 0
     let LOCATION
     if(searchParams.has("content")){
+        if(searchParams.get("content") == "HOME"){
+            window.location.href = 'home.html'
+            return
+        }
         if(Object.hasOwn(locationData,searchParams.get("content")))
         {
             SEARCH = 0
@@ -265,7 +276,11 @@ function init() {
         {
             SEARCH = 1
         }
+
+        
+
     }
+    
     if(SEARCH == 1){
         LOCATION = otherData[searchParams.get("content")]
         document.getElementById("bodyWithStuff").innerHTML = otherContent

@@ -12,6 +12,9 @@
             margin: 0;
 
         }
+        button {
+            color: black;
+        }
         #main {
             text-align: center;
             width: 100%;
@@ -93,6 +96,9 @@
             background-color: darkgoldenrod;
             outline: none;
         }
+        #searchbar{
+            outline: none;
+        }
 </style> 
 </head>
 <body>
@@ -103,7 +109,7 @@
             <button onclick= "window.location.href = 'contentDisplay.html?content=Primeplane'">Get started!</button>
             <button style="margin-left: 5px;" onclick="window.location.href = 'settings.html'">About</button>
             <div id="searchBox">
-                <input id="searchbar" placeholder="search..." autocomplete="off"  onfocus="search()">
+                <input id="searchbar" minimum-scale=1 placeholder="search..." autocomplete="off"  onunfocus="hideSearch()" onfocus="search()">
                 <div id="searchResults"></div>
             </div>
             
@@ -111,44 +117,11 @@
         </div>
     </div>
     <div id="news">
-        <div class="newsArticle" id="07-20-24a">
-            <H2>July 20, 2024</H2>
-            <p>The main search bar is added and fully functional!</p>
-            <p>This is the only addition, along with an about/settings page.</p>
-            <h3>To Do:</h3>
-            <p>Back buttons maybe</p>
-            <p>Everything else</p>
-        </div>
-        <div class="newsArticle" id="07-12-24b">
-            <H2>July 12, 2024 (late night)</H2>
-            <p>All content page types are added. An NPC (a character with stats) can use the monster page I think.</p>
-            <p>Added several articles (some characters, some items, a monster...)</p>
-            <p>Added a way to make a list of all of the different articles, with both title and ID stored</p>
-            <h3>To Do</h3>
-            <p>fix homepage, add search bar</p>
-            <p>Make pages look better on phones (currently a bit small with the text on non-location pages)</p>
-            <p>Make aforementioned Node stuff</p>
-            <p>Ability to link images in body text</p>
-            <p>Ability to link to different parts of the text (like from heading to heading, in a campaign)</p>
-            <p>Possible custom font for the runes?</p>
-        </div>
-        <div class="newsArticle" id="07-12-24a">
-            <h2>July 12, 2024 (early morning)</h2>
-            <p>Monster pages now work :D<br>I added the <a href="contentDisplay.html?content=Guidespirit">Guide Spirit</a> as a base model. I plan to add the World Weaver in the future (later today)</p>
-            <p>I added functionality so that dice notation (i.e. 1d6 or 1d8+10) is now replaced in most areas where it would be called for (where full markdown is permitted, and in certain statblock areas.) with a button that displays the die roll and the result. In a snazzy l'il popup too!</p>
-            <p>I added this blog!</p>
-            <p>Also added is Averia Serif Libre as a fun little font for where Lugrasimo don't work</p>
-            <p>links all now use 'content' instead of 'location' OR 'content' as a selector, which changed some backend code.</p>
-            <p>I added a more basic version of the markup Regex function to simply strip JSON of any potentially dangerous characters. With hope, this will make user-submitted stuff eventually viable.</p>
-            <h3>To do</h3>
-            <p>Maybe make a little node/shell app to do this blogging thing</p>
-            <p>Implement NPC, Character, Phenomena, item, and General Description page types in the "other" category</p>
-            <p>The possibility of JSON import/export? Probably this would be mostly locally, but that would be nice. Just a little node/electron app for managing the content stuff.</p>
-            <p>I considered Firebase integration, and in any case some chat/etc functionality would be nice in the longer run :D</p>
-            <p>Oh yeah uh making the search bar search</p>
-        </div>
+        loading news...
     </div>
     </div> 
+    <script type="text/javascript" src="scripts/news.js"></script>
+    
     <script type="text/javascript" src="scripts/OtherData.js"></script>
     <script type="text/javascript" src="scripts/LocationData.js"></script>
     <script type="text/javascript" src="scripts/HomeScripts.js"></script>
