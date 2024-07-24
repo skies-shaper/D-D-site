@@ -19,24 +19,24 @@ let locationContentBodyMobile = `
 <div id="text-content-mobile">
 <div id="menu">
     <button class="menubutton" onclick="setview(0)" id="about">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0(3).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0(3).png" class="icon">
     </button>
     <button class="menubutton" id="people" onclick="setview(1)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (5).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (5).png" class="icon">
     </button>
     <button class="menubutton" id="location" onclick="setview(2)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (4).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (4).png" class="icon">
     </button>
     <button class="menubutton" id="questhooks" onclick="setview(3)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (6).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (6).png" class="icon">
     </button>
     <button class="menubutton" id="places" onclick="setview(4)" >
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (7).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (7).png" class="icon">
     </button>
     <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
 </div>
@@ -81,24 +81,24 @@ let locationContentBodyDesktop = `
 </div>
 <div id="menu">
     <button class="menubutton" onclick="setview(0)" id="about">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0(3).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0(3).png" class="icon">
     </button>
     <button class="menubutton" id="people" onclick="setview(1)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (5).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (5).png" class="icon">
     </button>
     <button class="menubutton" id="location" onclick="setview(2)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (4).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (4).png" class="icon">
     </button>
     <button class="menubutton" id="questhooks" onclick="setview(3)">
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (6).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (6).png" class="icon">
     </button>
     <button class="menubutton" id="places" onclick="setview(4)" >
-        <img src="fire.gif" class="hiddenimg">
-        <img src="pixil-frame-0 (7).png" class="icon">
+        <img src="assets/fire.gif" class="hiddenimg">
+        <img src="assets/pixil-frame-0 (7).png" class="icon">
     </button>
     <button class="menubutton wide" id="info" onclick="setview(5)">About</button> 
 </div>

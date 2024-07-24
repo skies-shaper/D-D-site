@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Editor</title>
+</head>
+
+<body>
+    <select id="typeChooser">
+        <option selected>Monster</option>
+        <option>Spell</option>
+        <option>Character</option>
+        <option>Article</option>
+        <option>Item</option>
+        <option>Location</option>
+    </select>
+    <button onclick="generatePage()">Generate</button>
+    <div id="form"></div>
+    <button onclick="sendData()">Submit</button>
+    <button onclick="publish()">Publish</button>
+    <script>
+        getData()
+        async function getData() {
+            const url = "http://localhost:8000/data";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    //throw new Error(`Response status: ${response.status}`);
+                }
+                console.log(response)
+                const json = await response.text();
+                console.log(json);
+            } catch (error) {
+                console.log(error)
+                console.error(error.message);
+            }
+        }
+        async function sendData() {
+            const Request = new Response()
+
+            const response1 = await fetch("http://localhost:8000/append", {
+                method: "POST",
+                body: JSON.stringify({ type: "append", data: calculateObjectFromForm() }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(response1.status);
+        }
+        function generatePage() {
+            let type = document.getElementById("typeChooser").value
+            if (type == "Monster") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name"></input><br>
+                AC: <input></input><br>
+                HP: <input></input><br>
+                Alignment: <input></input><br>
+                Type: <input></input><br>
+                Size: <input></input><br>
+                Speed: <input></input><br>
+                STR: <input></input><br>
+                DEX: <input></input><br>
+                CON: <input></input><br>
+                INT: <input></input><br>
+                WIS: <input></input><br>
+                CHA: <input></input><br>
+                Saving Throws: <input></input><br>
+                Condition Immunities: <input></input><br>
+                Damage Resistances: <input></input><br>
+                Damage Immunities: <input></input><br>
+                Skill Modifiers: <input></input><br>
+                Senses: <input></input><br>
+                Languages: <input></input><br>
+                Challenge Rating: <input></input><br>
+                XP: <input></input><br>
+                Actions: <textarea></textarea><br>
+                Description: <textarea></textarea><br>
+                Modifiers: <textarea></textarea><br>
+                `
+                document.getElementById("Name").focus()
+
+            }
+            if (type == "Spell") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name"></input><br>
+                Level: <input id="level"></input><br>
+                School: <input id="school"></input><br>
+                Duration: <input id="duration"></input><br>
+                Components: <input id="components"></input><br>
+                Range: <input id="range"></input><br>
+                Casting time: <input id="castTime"></input><br>
+                Description: <textarea id="description"></textarea><br>
+                `
+                document.getElementById("Name").focus()
+            }
+            if (type == "Character") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name"></input><br>
+                Race: <input></input><br>
+                Class: <input></input><br>
+                Description: <textarea></textarea><br>
+                `
+            }
+            if (type == "Item") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name"></input><br>
+                Rarity: <input></input><br>
+                Type: <input></input><br>
+                Description: <textarea></textarea><br>
+                `
+            }
+            if (type == "Article") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name"></input><br>
+                Subtitle: <input></input><br>
+                Content: <textarea></textarea><br>
+                `
+            }
+            if (type == "Location") {
+                document.getElementById("form").innerHTML = `
+                Title: <input id="Name"></input><br>
+                Flavor Text: <input></input><br>
+                Image File name: <input></input><br>
+                Location : <textarea></textarea><br>
+                People : <textarea></textarea><br>
+                About : <textarea></textarea><br>
+                Adventure Hooks : <textarea></textarea><br>
+                Places Within : <textarea></textarea><br>
+                Information : <textarea></textarea><br>
+                Creator Name : <textarea></textarea><br>
+                Points of Interest: <button onclick="addPOI()">Add</button>
+                `
+
+            }
+            document.getElementById("file").innerHTML += `<button onclick="save()"></button>`
+        }
+        let numPOIs = 0
+        function addPOI() {
+            numPOIs++
+            document.getElementById("form").innerHTML += "<br>" + numPOIs + "<br>X: <input><br>Y:<input>"
+        }
+        
+        function calculateObjectFromForm() {
+            let endObj = {
+                type: document.getElementById("typeChooser").value,
+                src: "",
+                data: {}
+            }
+            const form = document.getElementById("form")
+            let kids = []
+            for (let i = 0; i < form.children.length; i++) {
+                console.log(form.children[i].tagName)
+                if (form.children[i].tagName == "BR") {
+                    continue;
+                }
+                kids.push(form.children[i])
+            }
+            console.log(kids)
+            if (endObj.type == "Monster") {
+                endObj.data = {
+                    name: kids[0].value,
+                    AC: kids[1].value,
+                    HP: kids[2].value,
+                    alignment: kids[3].value,
+                    type: kids[4].value,
+                    size: kids[5].value,
+                    speed: kids[6].value,
+                    STR: kids[7].value,
+                    DEX: kids[8].value,
+                    CON: kids[9].value,
+                    INT: kids[10].value,
+                    WIS: kids[11].value,
+                    CHA: kids[12].value,
+                    savingThrows: kids[13].value,
+                    conditionImmunities: kids[14].value,
+                    damageResistances: kids[15].value,
+                    damageImmunities: kids[16].value,
+                    skillMods: kids[17].value,
+                    senses: kids[18].value,
+                    languages: kids[19].value,
+                    CR: kids[20].value,
+                    XP: kids[21].value,
+                    actions: kids[22].value,
+                    modifiers: kids[23].value,
+                    description: kids[24].value
+                }
+            }
+            return endObj
+        }
+        async function publish(){
+            const response1 = await fetch("http://localhost:8000/append", {
+                method: "POST",
+                body: JSON.stringify({ type: "publish", data: {} }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(response1.status);
+        }
+    </script>
+</body>
