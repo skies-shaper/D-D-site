@@ -12,10 +12,13 @@
         <option>Article</option>
         <option>Item</option>
         <option>Location</option>
+        <option>Pen a news article</option>
     </select>
     <button onclick="generatePage()">Generate</button>
     <div id="form"></div>
     <button onclick="sendData()">Submit</button>
+    <br>
+    <br>
     <button onclick="publish()">Publish</button>
     <script>
         getData()
@@ -35,7 +38,16 @@
             }
         }
         async function sendData() {
-            const Request = new Response()
+            if(document.getElementById("typeChooser").value=="Pen a news article"){
+                const response1 = await fetch("http://localhost:8000/append", {
+                    method: "POST",
+                    body: JSON.stringify({ type: "news", data: calculateObjectFromForm() }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                console.log(response1.status);
+            }
 
             const response1 = await fetch("http://localhost:8000/append", {
                 method: "POST",
@@ -48,6 +60,14 @@
         }
         function generatePage() {
             let type = document.getElementById("typeChooser").value
+            if(type == "Pen a news article"){
+                document.getElementById("form").innerHTML = `
+                Title: <input id="Name"></input><br>
+                ID: <input></input><br>
+                Contents:<br>
+                <textarea></textarea>
+                `
+            }
             if (type == "Monster") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
@@ -182,6 +202,13 @@
                     actions: kids[22].value,
                     modifiers: kids[23].value,
                     description: kids[24].value
+                }
+            }
+            if(endObj.type=="Pen a news article"){
+                endObj.data={
+                    title: kids[0].value,
+                    id: kids[1].value,
+                    article: kids[2].value
                 }
             }
             return endObj

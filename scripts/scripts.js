@@ -268,21 +268,10 @@ function init() {
             window.location.href = 'home.html'
             return
         }
-        if(Object.hasOwn(locationData,searchParams.get("content")))
-        {
-            SEARCH = 0
-        }
-        else
-        {
-            SEARCH = 1
-        }
-
-        
-
     }
-    
-    if(SEARCH == 1){
-        LOCATION = otherData[searchParams.get("content")]
+    console.log(contentData[searchParams.get("content")])
+    if(contentData[searchParams.get("content")].type != "location"){
+        LOCATION = contentData[searchParams.get("content")]
         document.getElementById("bodyWithStuff").innerHTML = otherContent
         document.getElementsByTagName("body")[0].style.overflow = "auto"
         MOBILE = false;
@@ -392,19 +381,19 @@ function init() {
         }
     }
     if (SEARCH ==0) {
-        LOCATION = locationData[searchParams.get("content")]
-        document.title = "Worldbarrow - " + s(LOCATION.header.title) + " by " + s(LOCATION.creatorName)
-        document.getElementById("text-heading").innerHTML = `<h1 id="mainHeader">${markupHTMLConversion(LOCATION.header.title)}</h1><p id="mainFlavorText">${markupHTMLConversion(LOCATION.header.flavorText)}</p>`
+        LOCATION = contentData[searchParams.get("content")]
+        document.title = "Worldbarrow - " + s(LOCATION.data.header.title) + " by " + s(LOCATION.data.creatorName)
+        document.getElementById("text-heading").innerHTML = `<h1 id="mainHeader">${markupHTMLConversion(LOCATION.data.header.title)}</h1><p id="mainFlavorText">${markupHTMLConversion(LOCATION.data.header.flavorText)}</p>`
 
-        document.getElementById("content-about").innerHTML = "<h2>Introduction</h2>" + markupHTMLConversion(LOCATION.about)
-        document.getElementById("content-people").innerHTML = "<h2>People & Organizations</h2>" + markupHTMLConversion(LOCATION.people)
-        document.getElementById("content-location").innerHTML = `<h2>The location of ${LOCATION.header.title}</h2>` + markupHTMLConversion(LOCATION.location)
+        document.getElementById("content-about").innerHTML = "<h2>Introduction</h2>" + markupHTMLConversion(LOCATION.data.about)
+        document.getElementById("content-people").innerHTML = "<h2>People & Organizations</h2>" + markupHTMLConversion(LOCATION.data.people)
+        document.getElementById("content-location").innerHTML = `<h2>The location of ${LOCATION.data.header.title}</h2>` + markupHTMLConversion(LOCATION.data.location)
 
-        document.getElementById("content-hooks").innerHTML = "<h2>Adventure Hooks</h2>" + markupHTMLConversion(LOCATION.adventureHooks)
-        document.getElementById("content-places").innerHTML = `<h2>Places of interest within ${LOCATION.header.title}</h2>` + markupHTMLConversion(LOCATION.places)
-        document.getElementById("content-info").innerHTML = "<h2>About</h2>" + markupHTMLConversion(LOCATION.info) + `<p style="bottom: 0px; margin: 0%;" xmlns:cc="http://creativecommons.org/ns#">It is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>`
+        document.getElementById("content-hooks").innerHTML = "<h2>Adventure Hooks</h2>" + markupHTMLConversion(LOCATION.data.adventureHooks)
+        document.getElementById("content-places").innerHTML = `<h2>Places of interest within ${LOCATION.data.header.title}</h2>` + markupHTMLConversion(LOCATION.data.places)
+        document.getElementById("content-info").innerHTML = "<h2>About</h2>" + markupHTMLConversion(LOCATION.data.info) + `<p style="bottom: 0px; margin: 0%;" xmlns:cc="http://creativecommons.org/ns#">It is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>`
         if (!MOBILE) {
-            document.getElementById("creatorNameAttribution").innerText = markupHTMLConversion(LOCATION.creatorName)
+            document.getElementById("creatorNameAttribution").innerText = markupHTMLConversion(LOCATION.data.creatorName)
         }
         let numHs = 1
         for (let i = 0; i < document.getElementById("content-places").children.length; i++) {
@@ -413,7 +402,7 @@ function init() {
                 numHs++
             }
         }
-        document.getElementById("mapImg").src = "imgs/" + LOCATION.header.img + ".svg"
+        document.getElementById("mapImg").src = "imgs/" + LOCATION.data.header.img + ".svg"
         addMapPOIOverlay(LOCATION)
         resizeHeader()
         setview(0)
@@ -424,17 +413,17 @@ function init() {
 function addMapPOIOverlay(LOCATION) {
 
     var svg = document.getElementById('mapoverlay'); //Get svg element
-    svg.setAttribute("viewBox", LOCATION.header.viewBoxData)
-    for (let i = 0; i < LOCATION.POIs.length; i++) {
-        console.log(LOCATION.POIs[i])
+    svg.setAttribute("viewBox", LOCATION.data.header.viewBoxData)
+    for (let i = 0; i < LOCATION.data.POIs.length; i++) {
+        console.log(LOCATION.data.POIs[i])
         var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); //Create a path in SVG's namespace
-        newElement.setAttribute("d", `M${LOCATION.POIs[i].x},${LOCATION.POIs[i].y}c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z`); //Set path's data
+        newElement.setAttribute("d", `M${LOCATION.data.POIs[i].x},${LOCATION.data.POIs[i].y}c0,-5.0447 4.08954,-9.13425 9.13425,-9.13425c5.04471,0 9.13425,4.08955 9.13425,9.13425c0,5.04471 -9.13425,13.84871 -9.13425,13.84871c0,0 -9.13425,-8.804 -9.13425,-13.84871z`); //Set path's data
         newElement.style.stroke = "#000"; //Set stroke colour
         newElement.style.strokeWidth = "3px"; //Set stroke width
 
         //newElement.onclick = `setview(4,${LOCATION.POIs[i].ID})`
         newElement.onclick = () => {
-            setview(4, LOCATION.POIs[i].ID)
+            setview(4, LOCATION.data.POIs[i].ID)
         }
         svg.appendChild(newElement);
     }

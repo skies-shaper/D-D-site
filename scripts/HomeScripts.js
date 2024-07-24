@@ -3,14 +3,17 @@ listDataPoints()
 loadNews()
 function listDataPoints(){
     let returnList = []
-    Object.keys(otherData).forEach((key)=>{
-       
-        returnList.push({text: otherData[key].data.name,ID:key})
+
+    Object.keys(contentData).forEach((key)=>{
+        console.log(contentData[key])
+        if(contentData[key].type =="location"){
+            returnList.push({text: contentData[key].data.header.title,ID:key})
+        }
+        else{
+            returnList.push({text: contentData[key].data.name,ID:key})
+        }
     })
-    Object.keys(locationData).forEach((key)=>{
-       
-        returnList.push({text: locationData[key].header.title,ID:key})
-    })
+   
     pages = returnList
     console.log(returnList)
 }
@@ -51,6 +54,7 @@ function search(){
     }
 }
 function loadNews(){
+    //console.log(NEWS)
     document.getElementById("news").innerHTML = ""
     for(let i = 0; i<NEWS.length; i++){
         document.getElementById("news").innerHTML += `<div class="newsArticle" id="${s(NEWS[i].id)}">
@@ -69,6 +73,7 @@ function s(text){ //quick desanitization of all tags :D hopefully should make th
 }
 function markupHTMLConversion(text) {
     let replacedText = ""
+
     replacedText = text
     replacedText = replacedText.replaceAll(/\&/g, "&amp;")
 

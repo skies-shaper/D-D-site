@@ -13,11 +13,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+/*
+I have been working really hard on the backend for this site and have contrived a cunning solution involving a node.js server and localhost:8000 page which allows for slightly-nicer posts to be written and submitted into the page, then commited to github. Barebones it seems to be working!
+*/
 
 const EditorPage = fs.readFileSync("server data/Editor.html")
 let contentData = fs.readFileSync("server data/content.json")
-
+let newsData = fs.readFileSync("server data/news.json")
 const requestListener = function (req, res) {
     console.log(req.method)
     if (req.method == "POST") {
@@ -34,6 +36,10 @@ const requestListener = function (req, res) {
                 
             }
             if (receivedFile.type == "news") {
+                console.log("yay! news!")
+                let parsedData = JSON.parse(newsData)
+                parsedData.unshift(receivedFile.data.data)
+                fs.writeFileSync("server data/news.json", JSON.stringify(parsedData))
 
             }
             if(receivedFile.type =="publish"){
@@ -41,8 +47,9 @@ const requestListener = function (req, res) {
             }
         })
         req.on('end', function () {
-            res.writeHead(200, { 'Content-Type': 'text/html' })
-            res.end('post received')
+            // res.writeHead(200, { 'Content-Type': 'text/html' })
+            // res.end('post received')
+            return
         })
     }
     switch (req.url) {
@@ -71,6 +78,14 @@ server.listen(port, host, () => {
 });
 
 function publish(){
-    fs.writeFileSync("content.js",`let contentData = JSON.parse(${fs.readFileSync("server data/content.json")})`)
-    process.exit()
+    //submitting content
+    let JSConverted = fs.readFileSync("server data/content.json")
+    JSConverted = JSON.parse(JSConverted)
+    JSConverted = JSON.stringify(JSConverted).replaceAll(/\\/g,"\\\\")
+    fs.writeFileSync("scripts/content.js",`let contentData = JSON.parse(\`${JSConverted}\`)`)
+    //submitting news articles
+    JSConverted = fs.readFileSync("server data/news.json")
+    JSConverted = JSON.parse(JSConverted)
+    JSConverted = JSON.stringify(JSConverted).replaceAll(/\\/g,"\\\\")
+    fs.writeFileSync("scripts/news.js",`let NEWS = JSON.parse(\`${JSConverted}\`)`)
 }
