@@ -1,8 +1,8 @@
 const http = require("http")
 const fs = require("fs")
 const express = require("express")
-const crypto = require('crypto')
 const cors = require("cors")
+const openURl = require("openurl")
 
 const app = express()
 const host = 'localhost';
@@ -12,12 +12,10 @@ const corsOptions = {
 
 };
 
-app.use(cors(corsOptions));
-/*
-I have been working really hard on the backend for this site and have contrived a cunning solution involving a node.js server and localhost:8000 page which allows for slightly-nicer posts to be written and submitted into the page, then commited to github. Barebones it seems to be working!
-*/
 
-const EditorPage = fs.readFileSync("server data/Editor.html")
+app.use(cors(corsOptions));
+
+let EditorPage = fs.readFileSync("server data/Editor.html")
 let contentData = fs.readFileSync("server data/content.json")
 let newsData = fs.readFileSync("server data/news.json")
 const requestListener = function (req, res) {
@@ -25,9 +23,11 @@ const requestListener = function (req, res) {
     if (req.method == "POST") {
         req.on('data', (data) => {
             let receivedFile = JSON.parse("" + data)
+            console.log(receivedFile.type)
             console.log(receivedFile.data.data)
             console.log()
             if (receivedFile.type == "append") {
+                 console.log("this shouldn't happen")
                 let parsedData = JSON.parse(contentData)
                 parsedData[encodeURIComponent(receivedFile.data.data.name)] = receivedFile.data
                 fs.writeFileSync("server data/content.json", JSON.stringify(parsedData))
@@ -54,6 +54,7 @@ const requestListener = function (req, res) {
     }
     switch (req.url) {
         case "/editor":
+            EditorPage = fs.readFileSync("server data/Editor.html")
             res.setHeader("Content-Type", "text/html");
             res.writeHead(200)
             res.end(EditorPage)
@@ -89,3 +90,4 @@ function publish(){
     JSConverted = JSON.stringify(JSConverted).replaceAll(/\\/g,"\\\\")
     fs.writeFileSync("scripts/news.js",`let NEWS = JSON.parse(\`${JSConverted}\`)`)
 }
+openURl.open("http://localhost:8000/editor")

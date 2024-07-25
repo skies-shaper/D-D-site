@@ -248,5 +248,46 @@
             "modifiers": "",
             "description": ""
         }
+    },
+    "a": {
+        "type": "Monster",
+        "src": "",
+        "data": {
+            "name": "a",
+            "AC": "b",
+            "HP": "c",
+            "alignment": "d",
+            "type": "e",
+            "size": "f",
+            "speed": "g",
+            "STR": "h",
+            "DEX": "i",
+            "CON": "j",
+            "INT": "k",
+            "WIS": "l",
+            "CHA": "m",
+            "savingThrows": "n",
+            "conditionImmunities": "o",
+            "damageResistances": "p",
+            "damageImmunities": "q",
+            "skillMods": "r",
+            "senses": "s",
+            "languages": "t",
+            "CR": "u",
+            "XP": "v",
+            "actions": "w",
+            "modifiers": "x",
+            "description": "y"
+        }
+    },
+    "Super%20Cool%20Item": {
+        "type": "Item",
+        "src": "",
+        "data": {
+            "rarity": "common",
+            "name": "Super Cool Item",
+            "type": "sword",
+            "description": "A ^Super Cool Item^ is very cool isn't it? it can do lots of super cool things, like make pancakes"
+        }
     }
 }

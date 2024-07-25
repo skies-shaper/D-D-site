@@ -2,16 +2,48 @@
 
 <head>
     <title>Editor</title>
+    <style>
+        body{
+            background-color: bisque;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        input {
+            background-color: bisque;
+            border: none;
+            border-bottom: 1px solid gray;
+            outline: none;
+            width: 100px;
+            float: right;
+            margin-right: calc(100vw - 400px);
+            
+        }
+        input:focus {
+            border-bottom: 2px solid black;
+        }
+        textarea {
+            width: 400px;
+            height: 150px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: bisque;
+            border: none;
+            border-bottom: 1px solid grey;
+            outline: none;
+            resize: none;
+        }
+        textarea:focus{
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
     <select id="typeChooser">
-        <option selected>Monster</option>
-        <option>Spell</option>
-        <option>Character</option>
-        <option>Article</option>
-        <option>Item</option>
-        <option>Location</option>
+        <option selected>monster</option>
+        <option>spell</option>
+        <option>character</option>
+        <option>article</option>
+        <option>item</option>
+        <option>location</option>
         <option>Pen a news article</option>
     </select>
     <button onclick="generatePage()">Generate</button>
@@ -47,7 +79,9 @@
                     },
                 });
                 console.log(response1.status);
+                return;
             }
+
 
             const response1 = await fetch("http://localhost:8000/append", {
                 method: "POST",
@@ -68,7 +102,7 @@
                 <textarea></textarea>
                 `
             }
-            if (type == "Monster") {
+            if (type == "monster") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
                 AC: <input></input><br>
@@ -92,14 +126,14 @@
                 Languages: <input></input><br>
                 Challenge Rating: <input></input><br>
                 XP: <input></input><br>
-                Actions: <textarea></textarea><br>
-                Description: <textarea></textarea><br>
-                Modifiers: <textarea></textarea><br>
+                Actions: <br><textarea></textarea><br>
+                Description: <br><textarea></textarea><br>
+                Modifiers: <br><textarea></textarea><br>
                 `
                 document.getElementById("Name").focus()
 
             }
-            if (type == "Spell") {
+            if (type == "spell") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
                 Level: <input id="level"></input><br>
@@ -108,45 +142,46 @@
                 Components: <input id="components"></input><br>
                 Range: <input id="range"></input><br>
                 Casting time: <input id="castTime"></input><br>
-                Description: <textarea id="description"></textarea><br>
+                Description: <br><textarea id="description"></textarea><br>
                 `
                 document.getElementById("Name").focus()
             }
-            if (type == "Character") {
+            if (type == "character") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
                 Race: <input></input><br>
                 Class: <input></input><br>
-                Description: <textarea></textarea><br>
+                Description: <br><textarea></textarea><br>
                 `
             }
-            if (type == "Item") {
+            if (type == "item") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
                 Rarity: <input></input><br>
                 Type: <input></input><br>
-                Description: <textarea></textarea><br>
+                Description: <br><textarea></textarea><br>
                 `
             }
-            if (type == "Article") {
+            if (type == "article") {
                 document.getElementById("form").innerHTML = `
                 Name: <input id="Name"></input><br>
                 Subtitle: <input></input><br>
-                Content: <textarea></textarea><br>
+                Content: <br><textarea></textarea><br>
                 `
             }
-            if (type == "Location") {
+            if (type == "location") {
                 document.getElementById("form").innerHTML = `
                 Title: <input id="Name"></input><br>
                 Flavor Text: <input></input><br>
                 Image File name: <input></input><br>
-                Location : <textarea></textarea><br>
-                People : <textarea></textarea><br>
-                About : <textarea></textarea><br>
-                Adventure Hooks : <textarea></textarea><br>
-                Places Within : <textarea></textarea><br>
-                Information : <textarea></textarea><br>
-                Creator Name : <textarea></textarea><br>
+                Viewbox data: <input></input><br>
+                location : <br><textarea></textarea><br>
+                People : <br><textarea></textarea><br>
+                About : <br><textarea></textarea><br>
+                Adventure Hooks : <br><textarea></textarea><br>
+                Places Within : <br><textarea></textarea><br>
+                Information : <br><textarea></textarea><br>
+                Creator Name : <br><input></input><br>
                 Points of Interest: <button onclick="addPOI()">Add</button>
                 `
 
@@ -175,7 +210,7 @@
                 kids.push(form.children[i])
             }
             console.log(kids)
-            if (endObj.type == "Monster") {
+            if (endObj.type == "monster") {
                 endObj.data = {
                     name: kids[0].value,
                     AC: kids[1].value,
@@ -209,6 +244,53 @@
                     title: kids[0].value,
                     id: kids[1].value,
                     article: kids[2].value
+                }
+            }
+            if(endObj.type=="location"){
+                endObj.data={
+                    header: {
+                        title: kids[0].value,
+                        flavorText: kids[1].value,
+                        img: kids[2].value,
+                        viewBoxData: kids[3].value,
+                    },
+                    location: kids[4].value,
+                    people: kids[5].value,
+                    about: kids[6].value,
+                    adventureHooks: kids[7].value,
+                    places: kids[8].value,
+                    info: kids[9].value,
+                    creatorName: kids[10].value,
+                    POIs: []
+                }
+                let j = 1
+                for(let i = 11; (i+1)<kids.length; i+=2)
+                {
+                    endObj.data.POIs.push({ID:j,x:kids[i].value,y:kids[i+1].value})
+                    j++
+                }
+            }
+            if(endObj.type=="item"){
+                endObj.data={
+                    rarity: kids[1].value,
+                    name: kids[0].value,
+                    type: kids[2].value,
+                    description:kids[3].value 
+                }
+            }
+            if(endObj.type =="character"){
+                endObj.data={
+                    name: kids[0].value,
+                    race: kids[1].value,
+                    class: kids[2].value,
+                    description: kids[3].value
+                }
+            }
+            if(endObj.type=="article"){
+                endObj.data={
+                    name: kids[0].value,
+                    subtitle: kids[1].value,
+                    mainContent: kids[2].value 
                 }
             }
             return endObj

@@ -269,9 +269,10 @@ function init() {
             return
         }
     }
-    console.log(contentData[searchParams.get("content")])
-    if(contentData[searchParams.get("content")].type != "location"){
-        LOCATION = contentData[searchParams.get("content")]
+    let receivedData = contentData[encodeURI(searchParams.get("content"))]
+    console.log(receivedData)
+    if(receivedData.type != "location"){
+        LOCATION = receivedData
         document.getElementById("bodyWithStuff").innerHTML = otherContent
         document.getElementsByTagName("body")[0].style.overflow = "auto"
         MOBILE = false;
@@ -381,7 +382,7 @@ function init() {
         }
     }
     if (SEARCH ==0) {
-        LOCATION = contentData[searchParams.get("content")]
+        LOCATION = receivedData
         document.title = "Worldbarrow - " + s(LOCATION.data.header.title) + " by " + s(LOCATION.data.creatorName)
         document.getElementById("text-heading").innerHTML = `<h1 id="mainHeader">${markupHTMLConversion(LOCATION.data.header.title)}</h1><p id="mainFlavorText">${markupHTMLConversion(LOCATION.data.header.flavorText)}</p>`
 
