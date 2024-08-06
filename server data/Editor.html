@@ -2,6 +2,8 @@
 
 <head>
     <title>Editor</title>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" /> 
+
     <style>
         body{
             background-color: bisque;
@@ -47,63 +49,17 @@
         <option>Pen a news article</option>
     </select>
     <button onclick="generatePage()">Generate</button>
+    <select id="accessArticles">
+        <option selected>Choose an article!</option>
+    </select>
+    <button onclick="loadInArticle()">Load</button>
     <div id="form"></div>
     <button onclick="sendData()">Submit</button>
     <br>
     <br>
     <button onclick="publish()">Publish</button>
     <script>
-        getData()
-        async function getData() {
-            const url = "http://localhost:8000/data";
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    //throw new Error(`Response status: ${response.status}`);
-                }
-                console.log(response)
-                const json = await response.text();
-                console.log(json);
-            } catch (error) {
-                console.log(error)
-                console.error(error.message);
-            }
-        }
-        async function sendData() {
-            if(document.getElementById("typeChooser").value=="Pen a news article"){
-                const response1 = await fetch("http://localhost:8000/append", {
-                    method: "POST",
-                    body: JSON.stringify({ type: "news", data: calculateObjectFromForm() }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                console.log(response1.status);
-                return;
-            }
-
-
-            const response1 = await fetch("http://localhost:8000/append", {
-                method: "POST",
-                body: JSON.stringify({ type: "append", data: calculateObjectFromForm() }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            console.log(response1.status);
-        }
-        function generatePage() {
-            let type = document.getElementById("typeChooser").value
-            if(type == "Pen a news article"){
-                document.getElementById("form").innerHTML = `
-                Title: <input id="Name"></input><br>
-                ID: <input></input><br>
-                Contents:<br>
-                <textarea></textarea>
-                `
-            }
-            if (type == "monster") {
-                document.getElementById("form").innerHTML = `
+        let monsterBlock = `
                 Name: <input id="Name"></input><br>
                 AC: <input></input><br>
                 HP: <input></input><br>
@@ -130,11 +86,7 @@
                 Description: <br><textarea></textarea><br>
                 Modifiers: <br><textarea></textarea><br>
                 `
-                document.getElementById("Name").focus()
-
-            }
-            if (type == "spell") {
-                document.getElementById("form").innerHTML = `
+        let spellBlock = `
                 Name: <input id="Name"></input><br>
                 Level: <input id="level"></input><br>
                 School: <input id="school"></input><br>
@@ -144,33 +96,13 @@
                 Casting time: <input id="castTime"></input><br>
                 Description: <br><textarea id="description"></textarea><br>
                 `
-                document.getElementById("Name").focus()
-            }
-            if (type == "character") {
-                document.getElementById("form").innerHTML = `
+        let characterBlock = `
                 Name: <input id="Name"></input><br>
                 Race: <input></input><br>
                 Class: <input></input><br>
                 Description: <br><textarea></textarea><br>
                 `
-            }
-            if (type == "item") {
-                document.getElementById("form").innerHTML = `
-                Name: <input id="Name"></input><br>
-                Rarity: <input></input><br>
-                Type: <input></input><br>
-                Description: <br><textarea></textarea><br>
-                `
-            }
-            if (type == "article") {
-                document.getElementById("form").innerHTML = `
-                Name: <input id="Name"></input><br>
-                Subtitle: <input></input><br>
-                Content: <br><textarea></textarea><br>
-                `
-            }
-            if (type == "location") {
-                document.getElementById("form").innerHTML = `
+        let locationBlock = `
                 Title: <input id="Name"></input><br>
                 Flavor Text: <input></input><br>
                 Image File name: <input></input><br>
@@ -184,6 +116,229 @@
                 Creator Name : <br><input></input><br>
                 Points of Interest: <button onclick="addPOI()">Add</button>
                 `
+        let itemBlock = `
+                Name: <input id="Name"></input><br>
+                Rarity: <input></input><br>
+                Type: <input></input><br>
+                Description: <br><textarea></textarea><br>
+                `
+        let articleBlock = `
+                Name: <input id="Name"></input><br>
+                Subtitle: <input></input><br>
+                Content: <br><textarea></textarea><br>
+                `
+
+
+        let ImportedData
+        getData()
+        function loadInArticle(){
+            GLOBAL_TYPE="set"
+            console.log(ImportedData)
+            console.log(ImportedData[document.getElementById("accessArticles").value])
+            let DataImported = ImportedData[document.getElementById("accessArticles").value]
+            let type = DataImported.type
+            let data = DataImported.data
+            document.getElementById("typeChooser").value = type
+            if (type == "monster") {
+                document.getElementById("form").innerHTML = `Name:<input id="Name" value="${data.name}"></input><br>
+                AC: <input value="${data.AC}"></input><br>
+                HP: <input value="${data.HP}"></input><br>
+                Alignment: <input value="${data.alignment}"></input><br>
+                Type: <input value="${data.type}"></input><br>
+                Size: <input value="${data.size}"></input><br>
+                Speed: <input value="${data.speed}"></input><br>
+                STR: <input value="${data.STR}"></input><br>
+                DEX: <input value="${data.DEX}"></input><br>
+                CON: <input value="${data.CON}"></input><br>
+                INT: <input value="${data.INT}"></input><br>
+                WIS: <input value="${data.WIS}"></input><br>
+                CHA: <input value="${data.CHA}"></input><br>
+                Saving Throws: <input value="${data.savingThrows}"></input><br>
+                Condition Immunities: <input value="${data.conditionImmunities}"></input><br>
+                Damage Resistances: <input${data.damageResistances}></input><br>
+                Damage Immunities: <input value="${data.damageImmunities}"></input><br>
+                Skill Modifiers: <input value="${data.Skillmods}"></input><br>
+                Senses: <input value="${data.senses}"></input><br>
+                Languages: <input value="${data.languages}"></input><br>
+                Challenge Rating: <input value="${data.CR}"></input><br>
+                XP: <input value="${data.XP}"></input><br>
+                Actions: <br><textarea>${data.actions}</textarea><br>
+                Description: <br><textarea>${data.description}></textarea><br>
+                Modifiers: <br><textarea>${data.modifiers}</textarea><br>`
+                document.getElementById("Name").focus()
+
+
+
+            }
+            if (type == "spell") {
+                document.getElementById("form").innerHTML = `Name: <input id="Name" value="${data.name}"></input><br>
+                Level: <input id="level" value="${data.level}"></input><br>
+                School: <input id="school" value="${data.schoool}"></input><br>
+                Duration: <input id="duration" value="${data.duration}"></input><br>
+                Components: <input id="components" value="${data.components}"></input><br>
+                Range: <input id="range" value="${data.range}"></input><br>
+                Casting time: <input id="castTime" value="${data.castingTime}"></input><br>
+                Description: <br><textarea id="description">${data.description}</textarea><br>`
+                document.getElementById("Name").focus()
+            }
+            if (type == "character") {
+                document.getElementById("form").innerHTML = `
+                Name: <input id="Name" value="${data.name}"></input><br>
+                Race: <input value="${data.race}"></input><br>
+                Class: <input value="${data.class}"></input><br>
+                Description: <br><textarea>value="${dat.description}"</textarea><br>
+                `
+                document.getElementById("Name").focus()
+
+            }
+            if (type == "item") {
+                document.getElementById("form").innerHTML = `Name: <input id="Name" value="${data.name}"></input><br>
+                Rarity: <input value="${data.rarity}"></input><br>
+                Type: <input value="${data.type}"></input><br>
+                Description: <br><textarea>${data.description}</textarea><br>`
+            }
+            if (type == "article") {
+                document.getElementById("form").innerHTML =`
+                Name: <input id="Name" value="${data.name}"></input><br>
+                Subtitle: <input value="${data.subtitle}"></input><br>
+                Content: <br><textarea>${data.mainContent}</textarea><br>`
+            }
+            if (type == "location") {
+                document.getElementById("form").innerHTML = `
+                Title: <input id="Name" value="${data.header.title}"></input><br>
+                Flavor Text: <input value="${data.header.flavorText}"></input><br>
+                Image File name: <input value="${data.header.img}"></input><br>
+                Viewbox data: <input value="${data.header.viewBoxData}"></input><br>
+                location : <br><textarea>${data.location}</textarea><br>
+                People : <br><textarea>${data.people}</textarea><br>
+                About : <br><textarea>${data.about}</textarea><br>
+                Adventure Hooks : <br><textarea>${data.adventureHooks}</textarea><br>
+                Places Within : <br><textarea>${data.places}</textarea><br>
+                Information : <br><textarea>${data.info}</textarea><br>
+                Creator Name : <br><input>${data.creatorName}</input><br>
+                Points of Interest: <button onclick="addPOI()">Add</button>
+                `
+                numPOIs = 0
+                for(let i = 0; i<data.POIs.length; i++){
+                    addPOIWithValue(data.POIs[i].x,data.POIs[i].y)
+                }
+
+            }
+            document.getElementById("file").innerHTML += `<button onclick="save()"></button>`
+            for (let i = 0; i < form.children.length; i++) {
+                console.log(form.children[i].tagName)
+                if (form.children[i].tagName == "BR") {
+                    continue;
+                }
+                kids.push(form.children[i])
+            }
+
+
+
+        }
+        async function getList() {
+            const url = "http://localhost:8000/listing";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    //throw new Error(`Response status: ${response.status}`);
+                }
+                console.log(response)
+                const json = await response.text();
+                console.log(json);
+
+                
+            } catch (error) {
+                console.log(error)
+                console.error(error.message);
+            }
+        }
+        async function getData() {
+            const url = "http://localhost:8000/data";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    //throw new Error(`Response status: ${response.status}`);
+                }
+                console.log(response)
+                const json = await response.text();
+                console.log(json);
+                ImportedData = JSON.parse(json)
+                Object.keys(JSON.parse(json)).forEach((key)=>{
+                    console.log(key)
+                    document.getElementById("accessArticles").innerHTML += "<option>"+key+"</option>"
+                })
+            } catch (error) {
+                console.log(error)
+                console.error(error.message);
+            }
+        }
+        async function sendData() {
+            if(GLOBAL_TYPE=="set"){
+                const response1 = await fetch("http://localhost:8000/append", {
+                    method: "POST",
+                    body: JSON.stringify({ type: "set", data: calculateObjectFromForm() }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                console.log(response1.status);
+                return;
+            }
+            if(document.getElementById("typeChooser").value=="Pen a news article"){
+                const response1 = await fetch("http://localhost:8000/append", {
+                    method: "POST",
+                    body: JSON.stringify({ type: "news", data: calculateObjectFromForm() }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                console.log(response1.status);
+                return;
+            }
+
+
+            const response1 = await fetch("http://localhost:8000/append", {
+                method: "POST",
+                body: JSON.stringify({ type: "append", data: calculateObjectFromForm() }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(response1.status);
+        }
+        function generatePage() {
+            GLOBAL_TYPE = "new"
+            let type = document.getElementById("typeChooser").value
+            if(type == "Pen a news article"){
+                document.getElementById("form").innerHTML = `
+                Title: <input id="Name"></input><br>
+                ID: <input></input><br>
+                Contents:<br>
+                <textarea></textarea>
+                `
+            }
+            if (type == "monster") {
+                document.getElementById("form").innerHTML = monsterBlock
+                document.getElementById("Name").focus()
+
+            }
+            if (type == "spell") {
+                document.getElementById("form").innerHTML = spellBlock
+                document.getElementById("Name").focus()
+            }
+            if (type == "character") {
+                document.getElementById("form").innerHTML = characterBlock
+            }
+            if (type == "item") {
+                document.getElementById("form").innerHTML = itemBlock
+            }
+            if (type == "article") {
+                document.getElementById("form").innerHTML =articleBlock
+            }
+            if (type == "location") {
+                numPOIs = 0
+                document.getElementById("form").innerHTML = locationBlock
 
             }
             document.getElementById("file").innerHTML += `<button onclick="save()"></button>`
@@ -193,7 +348,10 @@
             numPOIs++
             document.getElementById("form").innerHTML += "<br>" + numPOIs + "<br>X: <input><br>Y:<input>"
         }
-        
+        function addPOIWithValue(x,y){
+            numPOIs++
+            document.getElementById("form").innerHTML += "<br>" + numPOIs + `<br>X: <input value="${x}"><br>Y:<input value="${y}">`
+        }
         function calculateObjectFromForm() {
             let endObj = {
                 type: document.getElementById("typeChooser").value,
@@ -229,14 +387,14 @@
                     conditionImmunities: kids[14].value,
                     damageResistances: kids[15].value,
                     damageImmunities: kids[16].value,
-                    skillMods: kids[17].value,
+                    Skillmods: kids[17].value,
                     senses: kids[18].value,
                     languages: kids[19].value,
                     CR: kids[20].value,
                     XP: kids[21].value,
                     actions: kids[22].value,
-                    modifiers: kids[23].value,
-                    description: kids[24].value
+                    modifiers: kids[24].value,
+                    description: kids[23].value
                 }
             }
             if(endObj.type=="Pen a news article"){
@@ -244,6 +402,18 @@
                     title: kids[0].value,
                     id: kids[1].value,
                     article: kids[2].value
+                }
+            }
+            if(endObj.type=="spell"){
+                endObj.data={
+                    name: kids[0].value,
+                    level: kids[1].value, 
+                    school: kids[2].value,
+                    duration: kids[3].value,
+                    components: kids[4].value,
+                    range: kids[5].value,
+                    castingTime: kids[6].value,
+                    description: kids[7].value
                 }
             }
             if(endObj.type=="location"){

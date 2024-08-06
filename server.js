@@ -27,13 +27,17 @@ const requestListener = function (req, res) {
             console.log(receivedFile.data.data)
             console.log()
             if (receivedFile.type == "append") {
-                 console.log("this shouldn't happen")
+                console.log("this shouldn't happen")
                 let parsedData = JSON.parse(contentData)
                 parsedData[encodeURIComponent(receivedFile.data.data.name)] = receivedFile.data
                 fs.writeFileSync("server data/content.json", JSON.stringify(parsedData))
             }
             if (receivedFile.type == "set") {
-                
+                console.log("no functionality for this yet :(")
+                let parsedData = JSON.parse(contentData)
+                parsedData[encodeURIComponent(receivedFile.data.data.name)] = receivedFile.data
+                fs.writeFileSync("server data/content.json", JSON.stringify(parsedData))
+
             }
             if (receivedFile.type == "news") {
                 console.log("yay! news!")
