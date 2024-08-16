@@ -6,6 +6,7 @@ let otherContent = `
     <div id="otherHeader"></div>
     <div id="otherImg"></div>
     <div id="otherData"></div>
+    <a href="home.html">Part of the Worldbarrow project.</a> Content licensed under CC BY-NC-SA by the respective author unless otherwise specified
 `
 let locationContentBodyMobile = `
 <div id="text-heading"><h1>Ooops</h1>
@@ -155,7 +156,7 @@ function markupHTMLConversion(text) {
 
 
     replacedText = replacedText.replace(/\[a (\S+) (.+?)\]/g, `<a href="contentDisplay.html\?content=$1">$2</a>`)
-    replacedText = replacedText.replace(/\[i (\S+) (.+?)\]/g, `<img src="$1" alt="$2"></img>`)
+    replacedText = replacedText.replace(/\[i (\S+) (.+?)\]/g, `<img src="imgs/$1" alt="$2"></img>`)
     
     replacedText = replacedText.replace(/\[j (\S+) (.+?)\]/g, `<a href="#$1">$2</a>`)
     replacedText = replacedText.replace(/\[h (\S+) (.+?)\]/g, `<h3 id="$1">$2</h3>`)
@@ -269,8 +270,17 @@ function init() {
             return
         }
     }
+    else{
+        
+    }
     let receivedData = contentData[encodeURI(searchParams.get("content"))]
     console.log(receivedData)
+    if(receivedData == undefined){
+        console.log()
+        document.getElementById("bodyWithStuff").innerHTML = `<h1>Sorry! That's a non-existent page :(</h1>
+        <a href="home.html">Why don't you go home?</a>`
+        return
+    }
     if(receivedData.type != "location"){
         LOCATION = receivedData
         document.getElementById("bodyWithStuff").innerHTML = otherContent
@@ -380,6 +390,7 @@ function init() {
             `
             
         }
+        
     }
     if (SEARCH ==0) {
         LOCATION = receivedData
