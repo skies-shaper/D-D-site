@@ -6,7 +6,7 @@ let otherContent = `
     <div id="otherHeader"></div>
     <div id="otherImg"></div>
     <div id="otherData"></div>
-    <a href="home.html">Part of the Worldbarrow project.</a> Content licensed under CC BY-NC-SA by the respective author unless otherwise specified
+    <div class="spell"><a href="home.html">Part of the Worldbarrow project.</a> Content licensed under CC BY-NC-SA by the respective author unless otherwise specified</div>
 `
 let locationContentBodyMobile = `
 <div id="text-heading"><h1>Ooops</h1>

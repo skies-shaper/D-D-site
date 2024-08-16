@@ -3,6 +3,7 @@
 
 <head>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" /> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -286,10 +287,11 @@
         }
         /*Above this: stuff for locations etc.
           Below this: stuff for monster displays*/
+        
         #otherHeader {
             margin-left: 5px;
             border-bottom: 3px solid darkred;
-            width: min(400px, 100%);
+            width: min(500px, 80%);
         }
         #otherData {
             margin: 5px;
@@ -307,11 +309,11 @@
             margin-left: 0px;
         }
         #otherImg {
-            max-width: min(400px, 100%);
+            max-width: min(500px, 80%);
         }
         .blockSection {
 
-            width: min(400px, 100%);
+            width: min(500px, 80%);
             border-bottom: 3px solid darkred;
             font-size: 15px;
         }
@@ -351,7 +353,7 @@
         }
         .spell {
             border-bottom: none !important;
-            width: min(100%, 400px);
+            width: min(80%, 500px);
             margin: 10px;
         }
         #otherImg img{
@@ -365,6 +367,34 @@
         .smallsubtext {
             font-size: 12px;
         }
+       /* @media screen and (max-width < 500px) {
+            *{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                background-color: red !important;
+            }
+            #otherHeader {
+                width: 80vw;
+                background-color: red;
+            }
+            #otherImg {
+                max-width: 80vw;
+            }
+            .blockSection {
+                width: 80vw;
+                background-color: red;
+
+            }
+            .spell {
+                width: 80vw;
+                background-color: red;
+
+            }
+            #otherImg img{
+                max-width: 80vw;
+                margin-left: 5px; 
+            }
+            
+        }*/
     </style>
     <script>
         var lastselectedID = 0;
