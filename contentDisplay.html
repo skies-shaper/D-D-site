@@ -1,438 +1,447 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <head>
+    <head>    
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" /> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&amp;display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <style>
-        @font-face { 
-            font-family: Lugrasimo; 
-            src: url('assets/Lugrasimo-Regular.ttf'); } 
-        body {
-            background-color: bisque;
-            font-family: 'Lugrasimo';
-            margin: 0;
-            overflow: hidden;
-            font-size: 15px;
-        }
-        button {
-            background-color: bisque;
-            border: none;
-            border-bottom: 1px solid black; 
-            font-family: 'Lugrasimo';
-            font-size: 15px;
-            padding: 0px;
-        }
-        button:hover {
-            background-color: burlywood;
-        }
-        .footer {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            float: left;
-            position: absolute;
-            bottom: 0;
-            z-index: 100;
-            background-color: lightgray;
-            border: 0;
-            padding: 0;
-            margin: none;
-            border-top: 1px solid black;
-            border-right: 1px solid black;
-            border-radius: 0px 5px 0 0;
-            max-width: calc(100vw - 403px);
-        }
-
-        #text-content-desktop {
-            min-width: 5px;
-            width: 400px;
-            height: 100vh;
-            float: right;
-            top: 0;
-            border-left: 3px solid black;
-        }
-
-        #text-heading h1 {
-            margin: 0;
-            font-size: 70px;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        #text-heading p {
-            margin: 0;
-            text-align: center;
-            white-space: nowrap;
-        }
-        #mapImg {
-            width: calc(100vw - 403px);
-            height: 95vh;
-        }
-        .imgholder {
-            text-align: center;
-            width: (100vw - 403px);
-            /*padding-left: calc((100% - 403px - 95vh) / 2);*/
-            float: left;
-        }
-
-        #text-heading {
-            border-bottom: 3px solid black;
-            height: 120px;
-        }
-
-        .menubutton {
-            position: relative;
-            width: 50px;
-            height: 50px;
-            float: left;
-            margin-left: 5px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            border-radius: 5px;
-            background: none;
-            border: 3px solid black;
-            padding: 0;
-        }
-        
-        .menubutton .icon {
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-
-        #menu {
-            width: fit-content;
-            height: 55px;
-        }
-
-        .menubutton:hover {
-
-            background-color: burlywood;
-            /*animation will happen*/
-        }
-
-        .menubutton:hover .hiddenimg {
-            visibility: visible;
-        }
-
-        .hiddenimg {
-            position: relative;
-            z-index: 5;
-            visibility: hidden;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            top: 0px;
-            left: 0;
-            float: left;
-        }
-        #dieResultPopup{
-            margin-top: 10px;
-            width: 100px;
-            margin-left: 150px;
-            float: left;
-            z-index: 1;
-            border-radius: 5px;
-            height: 20px;
-            background-color: deepskyblue;
-            display: none;
-            position: fixed;
-            text-align: center;
-            animation: showPopup;
-            animation-duration: .5s;
-        }
-        .content {
-            width: 100%;
-            margin: 5px;
-            height: calc(100vh - 185px);
-            overflow: auto;
-            text-align: left;
-            margin-bottom: 0;
-            margin-top: 0;
-            padding-right: 5px;
-        }
-        @keyframes showPopup {
-            from {
-                opacity: 0;
-                
+        <style>
+            @font-face { 
+                font-family: Lugrasimo; 
+                src: url('assets/Lugrasimo-Regular.ttf'); } 
+            body {
+                background-color: bisque;
+                font-family: 'Lugrasimo';
+                margin: 0;
+                overflow: hidden;
+                font-size: 15px;
             }
-            to {
-                opacity: 1;
+            button {
+                background-color: bisque;
+                border: none;
+                border-bottom: 1px solid black; 
+                font-family: 'Lugrasimo';
+                font-size: 15px;
+                padding: 0px;
             }
-        }
-        .content h3 {
-            margin: 5px;
-            margin-bottom: 0px;
-            background-color: bisque;
-        }
-
-        .content ul {
-            margin: 0;
-            padding: 10px;
-            padding-top: 0px;
-        }
-
-        .content p {
-            margin: 0;
-
-        }
-
-        .content li {
-            list-style-type: disc;
-            padding: 5px;
-        }
-
-        .content h2 {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        @media screen and (width < calc(95vh + 405px)) {
-            #text-content-desktop {
-                display: none;
+            button:hover {
+                background-color: burlywood;
             }
-
-            #mapImg {
-                width: calc(50vh - 123px);
-                height: auto;
-                max-height: calc(50vh - 123px);
-            }
-            #dieResultPopup {
-                margin-left: calc((100vw - 100px) / 2);
-            }
-            #mapoverlay {
-                width: calc(50vh - 123px) !important;
-                left: 0;
-                padding-left: calc((100vw - (50vh - 123px))/2) !important;
-                height: auto !important;
-                top: auto;
-                top: 123px !important;
-
-            }
-
-            .imgholder {
-                width: calc(50vh - 123px);
-                padding-left: calc((100vw - (50vh - 123px))/2)
-            }
-
             .footer {
-                min-width: 100%;
-                text-align: center;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                float: left;
+                position: absolute;
+                bottom: 0;
+                z-index: 100;
+                background-color: lightgray;
+                border: 0;
+                padding: 0;
+                margin: none;
+                border-top: 1px solid black;
+                border-right: 1px solid black;
+                border-radius: 0px 5px 0 0;
+                max-width: calc(100vw - 403px);
             }
 
-            .content {
-                max-height: calc(50vh - 60px);
+            #text-content-desktop {
+                min-width: 5px;
+                width: 400px;
+                height: 100vh;
+                float: right;
+                top: 0;
+                border-left: 3px solid black;
+            }
+
+            #text-heading h1 {
+                margin: 0;
+                font-size: 70px;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            #text-heading p {
+                margin: 0;
+                text-align: center;
+                white-space: nowrap;
+            }
+            #mapImg {
+                width: calc(100vw - 403px);
+                height: 95vh;
+            }
+            .imgholder {
+                text-align: center;
+                width: (100vw - 403px);
+                /*padding-left: calc((100% - 403px - 95vh) / 2);*/
+                float: left;
+            }
+
+            #text-heading {
+                border-bottom: 3px solid black;
+                height: 120px;
+            }
+
+            .menubutton {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                float: left;
+                margin-left: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                border-radius: 5px;
+                background: none;
+                border: 3px solid black;
+                padding: 0;
+            }
+            
+            .menubutton .icon {
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
             }
 
             #menu {
+                width: fit-content;
+                height: 55px;
+            }
+
+            .menubutton:hover {
+
+                background-color: burlywood;
+                /*animation will happen*/
+            }
+
+            .menubutton:hover .hiddenimg {
+                visibility: visible;
+            }
+
+            .hiddenimg {
+                position: relative;
+                z-index: 5;
+                visibility: hidden;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                top: 0px;
+                left: 0;
+                float: left;
+            }
+            #dieResultPopup{
+                margin-top: 10px;
+                width: 100px;
+                margin-left: 150px;
+                float: left;
+                z-index: 1;
+                border-radius: 5px;
+                height: 20px;
+                background-color: deepskyblue;
+                display: none;
+                position: fixed;
                 text-align: center;
-                margin-left: calc((100% - 390px)/2);
+                animation: showPopup;
+                animation-duration: .5s;
             }
-        }
-
-        #text-content-mobile {
-            max-height: 50vh;
-            bottom: 0;
-            position: absolute;
-
-        }
-
-        .wide {
-            width: 105px;
-            font-family: 'Lugrasimo';
-            font-size: 20px;
-            margin-right: 5px;
-        }
-
-        #mapoverlay {
-            text-align: center;
-            top: 0;
-            position: absolute;
-            z-index: 5;
-            display: block;
-            width: calc(100vw - 403px);
-            height: 95vh;
-            /*padding-left: calc((100% - 403px - 95vh) / 2);
-            */left: 0;
-            /*float: left;*/
-        }
-
-        path {
-            fill: red;
-        }
-
-        path:hover {
-            fill: coral;
-        }
-
-        #test {
-            /*Method helped by https://stackoverflow.com/a/118251 */
-            position: absolute;
-            left: -1000px;
-            min-width: fit-content;
-            visibility: hidden;
-            height: auto;
-            width: auto;
-            white-space: nowrap;
-            font-size: 70px;
-        }
-        /*Above this: stuff for locations etc.
-          Below this: stuff for monster displays*/
-        
-        #otherHeader {
-            margin-left: 5px;
-            border-bottom: 3px solid darkred;
-            width: min(500px, 80%);
-        }
-        #otherData {
-            margin: 5px;
-            padding-bottom: 5px;
-            overflow: auto;
-        }
-        #otherImage {
-            margin-left: 5px;
-        }
-        #otherHeader h1 {
-            margin-bottom: 0px;
-        }
-        #otherHeader p {
-            margin: 5px;
-            margin-left: 0px;
-        }
-        #otherImg {
-            max-width: min(500px, 80%);
-        }
-        .blockSection {
-
-            width: min(500px, 80%);
-            border-bottom: 3px solid darkred;
-            font-size: 15px;
-        }
-        .blockSection th {
-            font-family: 'Averia Serif Libre';
-            font-weight: bolder;
-            font-size: 13px;
-        }
-        .blockSection td {
-            font-family: 'Averia Serif Libre';
-            width: 67px;
-            font-size: 13px;
-            text-align: center;
-        }
-        .blockSection h2 {
-            margin: 5px;
-            margin-left: 0px;
-        }
-        .spell img,.blockSection img {
-            max-width: 100%;
-            max-height: 100%;
-            height: auto;
-            width: auto;
-        }
-        .blockSection p {
-            margin: 5px;
-            margin-left: 0px;
-        }
-        .blandFont {
-            font-family: 'Averia Serif Libre';
-            font-size: 15px;
-        }
-        strong {
-            font-weight: bolder;
-            font-family: 'Averia Serif Libre';
-            font-size: 17px;
-        }
-        .spell {
-            border-bottom: none !important;
-            width: min(80%, 500px);
-            margin: 10px;
-        }
-        #otherImg img{
-            max-width: 400px;
-            margin-left: 5px; 
-        }
-        .spell h3 {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-        .smallsubtext {
-            font-size: 12px;
-        }
-       /* @media screen and (max-width < 500px) {
-            *{
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                background-color: red !important;
+            .content {
+                width: 100%;
+                margin: 5px;
+                height: calc(100vh - 185px);
+                overflow: auto;
+                text-align: left;
+                margin-bottom: 0;
+                margin-top: 0;
+                padding-right: 5px;
             }
-            #otherHeader {
-                width: 80vw;
-                background-color: red;
+            @keyframes showPopup {
+                from {
+                    opacity: 0;
+                    
+                }
+                to {
+                    opacity: 1;
+                }
             }
-            #otherImg {
-                max-width: 80vw;
+            .content h3 {
+                margin: 5px;
+                margin-bottom: 0px;
+                background-color: bisque;
             }
-            .blockSection {
-                width: 80vw;
-                background-color: red;
+
+            .content ul {
+                margin: 0;
+                padding: 10px;
+                padding-top: 0px;
+            }
+
+            .content p {
+                margin: 0;
 
             }
-            .spell {
-                width: 80vw;
-                background-color: red;
 
+            .content li {
+                list-style-type: disc;
+                padding: 5px;
             }
-            #otherImg img{
-                max-width: 80vw;
-                margin-left: 5px; 
+
+            .content h2 {
+                margin-top: 0;
+                margin-bottom: 0;
             }
             
-        }*/
-    </style>
-    <script>
-        var lastselectedID = 0;
-        function setview(id, index) {
-            if (lastselectedID > 0) {
-                document.getElementById("H" + lastselectedID).style.background = "bisque"
-            }
-            let contentboxes = document.getElementsByClassName("content")
-            for (let i = 0; i < contentboxes.length; i++) {
-                contentboxes[i].style.height = 0
-                contentboxes[i].style.margin = 0
-            }
-            contentboxes[id].style.height = "calc(100vh - 185px)";
-            contentboxes[id].style.margin = "5px";
-            contentboxes[id].style.marginBottom = "0px"
-            contentboxes[id].style.marginTop = "0px"
-            if (index != undefined && id == 4) {
-                document.getElementById("H" + index).scrollIntoView({ behavior: 'smooth' });
-                document.getElementById("H" + index).style.background = "darkgrey"
-                lastselectedID = index
-            }
-            else {
-                lastselectedID = 0
-            }
-        }
-    </script>
-</head>
+            @media screen and (width < calc(95vh + 405px)) {
+                #text-content-desktop {
+                    display: none;
+                }
+                #text-heading {
+                    width: 100vw;
+                }
+                #mapImg {
+                    width: calc(50vh - 123px);
+                    height: auto;
+                    max-height: calc(50vh - 123px);
+                }
+                #dieResultPopup {
+                    margin-left: calc((100vw - 100px) / 2);
+                }
+                #mapoverlay {
+                    width: calc(50vh - 123px) !important;
+                    left: 0;
+                    padding-left: calc((100vw - (50vh - 123px))/2) !important;
+                    height: auto !important;
+                    top: auto;
+                    top: 123px !important;
 
-<body>
-    <noscript>Um. Boy have I got a funny story to tell you...<br>You should probably turn javascript on if you want to hear it though.</noscript>
-    <div id="bodyWithStuff">
+                }
 
-    </div>
-    <div id="test"></div>
+                .imgholder {
+                    width: calc(50vh - 123px);
+                    padding-left: calc((100vw - (50vh - 123px))/2)
+                }
 
-</body>
+                .footer {
+                    min-width: 100%;
+                    text-align: center;
+                }
 
+                .content {
+                    max-height: calc(50vh - 60px);
+                }
+
+                #menu {
+                    text-align: center;
+                    margin-left: calc((100% - 390px)/2);
+                }
+            }
+            @media screen and (width <390px){
+                .menubutton {
+                    max-width: 75px;
+                }
+                #menu {
+                    margin-left: 0px;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                }
+                .wide {
+                    margin-right: 0px;
+                }
+            }
+            #text-content-mobile {
+                max-height: 50vh;
+                bottom: 0;
+                position: absolute;
+
+            }
+
+            .wide {
+                width: 105px;
+                font-family: 'Lugrasimo';
+                font-size: 20px;
+                margin-right: 5px;
+            }
+
+            #mapoverlay {
+                text-align: center;
+                top: 0;
+                position: absolute;
+                z-index: 5;
+                display: block;
+                width: calc(100vw - 403px);
+                height: 95vh;
+                /*padding-left: calc((100% - 403px - 95vh) / 2);
+                */left: 0;
+                /*float: left;*/
+            }
+
+            path {
+                fill: red;
+            }
+
+            path:hover {
+                fill: coral;
+            }
+
+            #test {
+                /*Method helped by https://stackoverflow.com/a/118251 */
+                position: absolute;
+                left: -1000px;
+                min-width: fit-content;
+                visibility: hidden;
+                height: auto;
+                width: auto;
+                white-space: nowrap;
+                font-size: 70px;
+            }
+            /*Above this: stuff for locations etc.
+            Below this: stuff for monster displays*/
+            
+            #otherHeader {
+                margin-left: 5px;
+                border-bottom: 3px solid darkred;
+                width: min(500px, 80%);
+            }
+            #otherData {
+                margin: 5px;
+                padding-bottom: 5px;
+                overflow: auto;
+            }
+            #otherImage {
+                margin-left: 5px;
+            }
+            #otherHeader h1 {
+                margin-bottom: 0px;
+            }
+            #otherHeader p {
+                margin: 5px;
+                margin-left: 0px;
+            }
+            #otherImg {
+                max-width: min(500px, 80%);
+            }
+            .blockSection {
+
+                width: min(500px, 80%);
+                border-bottom: 3px solid darkred;
+                font-size: 15px;
+            }
+            .blockSection th {
+                font-family: 'Averia Serif Libre';
+                font-weight: bolder;
+                font-size: 13px;
+            }
+            .blockSection td {
+                font-family: 'Averia Serif Libre';
+                width: 67px;
+                font-size: 13px;
+                text-align: center;
+            }
+            .blockSection h2 {
+                margin: 5px;
+                margin-left: 0px;
+            }
+            .spell img,.blockSection img {
+                max-width: 100%;
+                max-height: 100%;
+                height: auto;
+                width: auto;
+            }
+            .blockSection p {
+                margin: 5px;
+                margin-left: 0px;
+            }
+            .blandFont {
+                font-family: 'Averia Serif Libre';
+                font-size: 15px;
+            }
+            strong {
+                font-weight: bolder;
+                font-family: 'Averia Serif Libre';
+                font-size: 17px;
+            }
+            .spell {
+                border-bottom: none !important;
+                width: min(80%, 500px);
+                margin: 10px;
+            }
+            #otherImg img{
+                max-width: 400px;
+                margin-left: 5px; 
+            }
+            .spell h3 {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            .smallsubtext {
+                font-size: 12px;
+            }
+        /* @media screen and (max-width < 500px) {
+                *{
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    background-color: red !important;
+                }
+                #otherHeader {
+                    width: 80vw;
+                    background-color: red;
+                }
+                #otherImg {
+                    max-width: 80vw;
+                }
+                .blockSection {
+                    width: 80vw;
+                    background-color: red;
+
+                }
+                .spell {
+                    width: 80vw;
+                    background-color: red;
+
+                }
+                #otherImg img{
+                    max-width: 80vw;
+                    margin-left: 5px; 
+                }
+                
+            }*/
+        </style>
+        <script>
+            var lastselectedID = 0;
+            function setview(id, index) {
+                if (lastselectedID > 0) {
+                    document.getElementById("H" + lastselectedID).style.background = "bisque"
+                }
+                let contentboxes = document.getElementsByClassName("content")
+                for (let i = 0; i < contentboxes.length; i++) {
+                    contentboxes[i].style.height = 0
+                    contentboxes[i].style.margin = 0
+                }
+                contentboxes[id].style.height = "calc(100vh - 185px)";
+                contentboxes[id].style.margin = "5px";
+                contentboxes[id].style.marginBottom = "0px"
+                contentboxes[id].style.marginTop = "0px"
+                if (index != undefined && id == 4) {
+                    document.getElementById("H" + index).scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById("H" + index).style.background = "darkgrey"
+                    lastselectedID = index
+                }
+                else {
+                    lastselectedID = 0
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <noscript>Um. Boy have I got a funny story to tell you...<br>You should probably turn javascript on if you want to hear it though.</noscript>
+        <div id="bodyWithStuff">
+
+        </div>
+        <div id="test"></div>
+        <script type="text/javascript" src="scripts/content.js"></script>
+        <script type="text/javascript" src="scripts/scripts.js"></script>
+    </body>
 </html>
 
-<script type="text/javascript" src="scripts/content.js"></script>
-<script type="text/javascript" src="scripts/scripts.js"></script>
