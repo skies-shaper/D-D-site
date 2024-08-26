@@ -1,4 +1,13 @@
 {
+    "test (dleete me plz)": {
+        "type": "article",
+        "src": "",
+        "data": {
+            "name": "The Illochu",
+            "subtitle": "Ardu subgroup",
+            "mainContent": "A subgroup of the ^[a Ardu Ardu]^  (this setting's Humans), the Illochu are wanderers through the Continent in the Ardu realms [a directionsPP Ad-Isto] of the Dwarven mountains."
+        }
+    },
     "ArduSubgroupsIllochu": {
         "type": "article",
         "src": "",

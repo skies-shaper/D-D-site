@@ -42,10 +42,12 @@ function search(){
     let search = document.getElementById("searchbar").value
     console.log(search)
     document.getElementById("searchResults").innerHTML = ""
-
+    if(search==""){
+        return;
+    }
     let searchResults = []
     for(let i = 0; i<pages.length; i++){
-        if(pages[i].text.includes(search)){
+        if(pages[i].text.toLowerCase().includes(search.toLowerCase())){
             searchResults.push(pages[i])
         }
     }
