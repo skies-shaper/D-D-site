@@ -322,9 +322,9 @@ function init() {
         }
         if(LOCATION.type == "spell") {
             let spellLevel = ""
-            if(s(LOCATION.data.level)=="cantrip")
+            if(s(LOCATION.data.level).toUpperCase()=="cantrip".toUpperCase())
             {
-                spellLevel = s(LOCATION.data.school)+'cantrip'
+                spellLevel = s(LOCATION.data.school)+' cantrip'
             }
             else{
                 let i = LOCATION.data.level
@@ -334,9 +334,13 @@ function init() {
             document.getElementById("otherHeader").innerHTML = `<h3>${s(LOCATION.data.name)}</h3><p class="smallsubtext">${spellLevel}</p>
             `
             document.getElementById("otherData").innerHTML = `
-            <strong>Casting Time: </strong>${s(LOCATION.data.castingTime)}<br>
-            <strong>Range: </strong>${s(LOCATION.data.range)}<br>
-            <strong>Components: </strong>${s(LOCATION.data.components)}<br>
+            <strong>Casting Time: </strong>${s(LOCATION.data.castingTime)}<br>`
+            if(LOCATION.data.range != ""){
+                document.getElementById("otherData").innerHTML += `<strong>Range: </strong>${s(LOCATION.data.range)}<br>
+                `
+            }
+
+            document.getElementById("otherData").innerHTML += `<strong>Components: </strong>${s(LOCATION.data.components)}<br>
             <strong>Duration: </strong>${s(LOCATION.data.duration)}<br>
             <div style="height: 7px; width: 100%;"></div>${markupHTMLConversion(LOCATION.data.description)}
             `
@@ -385,6 +389,7 @@ function init() {
                 <p>${markupHTMLConversion(LOCATION.data.actions)}</p>
             </div>
             <div class="blockSection" style="border-bottom: none;">
+            <br>
                 <p>${markupHTMLConversion(LOCATION.data.description)}</p>
             </div>
             `
