@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" /> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: bisque;
+            font-family: 'Lugrasimo';
+            margin: 0;
+
+        }
+        button {
+            color: black;
+        }
+        #main {
+            text-align: center;
+            width: 100%;
+        }
+        #main h1{
+            width: 95%;
+            margin: 2.5%;
+            font-size: 70px;
+            margin-bottom: 0px;
+        }
+        #main button {
+            float: left;
+            font-size: 20px;
+            height: 60px;
+            border-radius: 5px;
+            background-color: deepskyblue;
+            border: none;
+            padding: 5px;
+
+            width: 140;
+            
+        }
+        #main button:hover {
+            background-color: dodgerblue;
+            
+        }
+        #main input {
+            height: 50px;
+            width: 200px;
+            padding: 5px;
+            border: none;
+            font-size: 20px;
+            background-color: burlywood;
+            border-radius: 5px;
+
+        }
+        #news {
+            margin-left: 5px;
+        }
+        .newsArticle {
+            width: 100%;
+            display: block;
+        }
+        .newsArticle h2 {
+            border-top: 1px solid black;
+            margin-top: 10px;
+            width: fit-content;
+            padding-right: 10px;
+        }
+        #searchBox {
+            margin: 5px;
+            margin-top: 0px;
+            width: fit-content;
+            float:left;
+        }
+        #searchResults {
+            margin-left: 4px;
+            width: 202px;
+            background-color: whitesmoke;
+            z-index: 2;
+            position: absolute;
+        }
+        #toolbar {
+            margin-left: calc((100% - 402px) / 2);
+            display: block;
+            height: 80px;
+            width: fit-content;
+        }
+        .searchResultButton {
+            width: 100%;
+            background-color: whitesmoke !important;
+            border-radius: 0px !important;
+            border-bottom: 1px solid black !important;
+        }
+        .searchResultButton:hover {
+            background-color: lightblue !important;
+        }
+        #searchbar:focus{
+            background-color: darkgoldenrod;
+            outline: none;
+        }
+        #searchbar{
+            outline: none;
+        }
+        .catButt {
+            background-color: bisque !important;
+            
+            font-size: 12px !important;
+            border-radius: 0 !important;
+            margin-right: 5px !important;
+            height: 20px !important;
+            float: left  !important;
+            border-right: 1px solid black !important;
+            color: black !important;
+
+        }
+        .catButt:hover {
+            background-color: burlywood !important;
+        }
+        #categoryButtons {
+            
+            box-sizing: border-box !important;
+            height: 20px !important;
+            display: block !important;
+            width: fit-content;
+            margin: 0 auto;
+        }
+    </style> 
+    
+</head>
+<body>
+    <script>
+        function rdir(loc){
+            window.location.href = "contentDisplay.html?content="+loc
+        }
+    </script>
+    <div id="main">
+        <h1>Worldbarrow</h1>
+        <p>A project by SkiesShaper</p>
+        <div id="toolbar">
+            <button onclick= "window.location.href = 'contentDisplay.html?content=Primeplane'">Get started!</button>
+            <button style="margin-left: 5px;" onclick="window.location.href = 'settings.html'">About</button>
+            <div id="searchBox">
+                <input id="searchbar" minimum-scale=1 placeholder="search..." autocomplete="off"  onunfocus="hideSearch()" onfocus="search()">
+                <div id="searchResults"></div>
+            </div>
+        </div>
+        <div id="categoryButtons">
+            <button class="catButt" onclick="rdir('Places')">Places</button>
+            <button class="catButt" onclick="rdir('Races')">Races</button>
+            <button class="catButt" onclick="rdir('Classes')">Classes</button>
+            <button class="catButt" onclick="rdir('People')">People</button>
+            <button class="catButt" onclick="rdir('Organizations')">Organizations</button>
+            <button class="catButt" onclick="rdir('Items')">Items</button>
+            <button class="catButt" onclick="rdir('Spells')">Spells</button>
+            <button class="catButt" onclick="rdir('Monsters')">Monsters</button>
+            <button class="catButt" onclick="rdir('Campaigns')">Campaigns</button>
+            <button class="catButt" onclick="rdir('References')">References</button>
+        </div>
+
+    </div>
+    </div>
+    <div id="news">
+        loading news...
+    </div>
+    </div> 
+    <script type="text/javascript" src="https://skies-shaper.github.io/Worldbarrow/scripts/news.js"></script>
+    <script type="text/javascript" src="https://skies-shaper.github.io/Worldbarrow/scripts/content.js"></script>
+
+    <script type="text/javascript" src="scripts/HomeScripts.js"></script>
+</body>
+</html>
